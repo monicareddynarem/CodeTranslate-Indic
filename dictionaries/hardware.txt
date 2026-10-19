@@ -1,0 +1,23 @@
+CPU
+ALU
+GPU
+RAM
+ROM
+Cache | AMBIGUOUS
+Register | AMBIGUOUS
+Instruction Fetch Unit
+Control Unit
+Memory Management Unit
+System Bus
+RISC-V
+ARM | AMBIGUOUS
+x86
+FPGA
+Motherboard
+Microprocessor
+Clock Cycle
+Pipeline | AMBIGUOUS
+Bus | AMBIGUOUS
+Port | AMBIGUOUS
+Driver | AMBIGUOUS
+Bridge | AMBIGUOUS

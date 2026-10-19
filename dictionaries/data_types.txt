@@ -1,0 +1,15 @@
+integer
+int
+float | AMBIGUOUS
+double | AMBIGUOUS
+character
+char
+string | AMBIGUOUS
+boolean
+bool
+unsigned long
+long int
+short int
+byte
+pointer
+reference | AMBIGUOUS

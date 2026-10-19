@@ -1,0 +1,9 @@
+# API key — never commit this
+config.py
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Output files
+output/

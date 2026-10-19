@@ -1,0 +1,26 @@
+Relational Schema
+Normalization
+Primary Key
+Foreign Key
+Bitemporal Logic
+Temporal Database
+Transaction | AMBIGUOUS
+ACID Properties
+Write-Ahead Logging
+Indexing | AMBIGUOUS
+Query Optimization
+Inner Join
+Outer Join
+Entity-Relationship Model
+Concurrency Control
+Isolation Level
+Database Trigger
+Stored Procedure
+Object-Relational Mapping
+Table | AMBIGUOUS
+Key | AMBIGUOUS
+Record | AMBIGUOUS
+Index | AMBIGUOUS
+View | AMBIGUOUS
+Schema
+Cursor | AMBIGUOUS

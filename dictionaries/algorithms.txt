@@ -1,0 +1,24 @@
+Sorting Algorithms
+Binary Search
+Linear Search
+Depth First Search, Depth-First Search, DFS
+Breadth First Search, Breadth-First Search, BFS
+Merge Sort
+Quick Sort
+Bubble Sort
+Insertion Sort
+Selection Sort
+Heap Sort
+Counting Sort
+Bucket Sort
+Radix Sort
+graph algorithms
+Dijkstra's Algorithm, Dijkstras
+A* Search
+Bellman-Ford Algorithm
+Floyd-Warshall Algorithm
+Kruskal's Algorithm, Kruskals
+Prim's Algorithm, Prims
+Topological Sort, Topological Sorting
+Dynamic Programming
+Greedy Algorithm

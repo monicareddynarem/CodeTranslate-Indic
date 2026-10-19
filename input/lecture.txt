@@ -1,0 +1,11 @@
+In computer science, a tree is a widely used data structure that simulates a hierarchical tree structure with a root value and subtrees of children. A Binary Search Tree is a special kind of tree where each node has at most two children. We can traverse a tree using Depth-First Search or Breadth-First Search.
+
+Consider a problem where a monkey is sitting on a tree in a forest. The monkey wants to jump from one tree to another. This is not a data structure problem, but a real world scenario.
+
+In operating systems, when a process is waiting for a resource held by another process, a deadlock can occur. The operating system uses a mutex or semaphore to handle critical sections. A context switch happens when the CPU switches from one process to another.
+
+Sorting algorithms are fundamental in computer science. Merge Sort divides the array into halves and recursively sorts them. Quick Sort uses a pivot element to partition the array. Bubble Sort repeatedly compares adjacent elements.
+
+In a graph, Dijkstra's Algorithm finds the shortest path from a source node to all other nodes. We can represent a graph using an adjacency matrix or an adjacency list. DFS and BFS are the two most common graph traversal algorithms.
+
+A process of making pottery by hand can take several hours, especially when the clay needs to dry before it can be shaped.
