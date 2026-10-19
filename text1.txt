@@ -1,0 +1,102 @@
+Hello and welcome to this video.
+So in this video we will look at Processes, which is possibly the most crucial part of
+operating systems.
+So, processes as we know is a program in execution.
+So we will see today how operating systems manage processes.
+So let us start with this now famous example of printing "Hello world" on to a screen.
+Virtual Address Space of a Process
+So, when compiled with gcc hello dot c it creates an executable a dot out.
+So when a dot out is executed a process is created.
+Part of this process will be in the RAM and it is identified by a virtual address map.
+So the virtual address map is a sequence of contiguous addressable memory locations starting
+from 0 to a limit of MAX_SIZE.
+So, within this virtual address map we have various aspects of the process including the
+instructions, global and static data, heap, as well as the stack.
+So as we have seen in an earlier video, the virtual address space or virtual address map
+Virtual Address Map of a Process
+of a process is divided into equally sized blocks.
+So typically the size of each block is 4 kilo bytes.
+Again there is each process would also have a process page table in memory which maps
+each block of the process into a corresponding page frame.
+The RAM, as we have seen is divided into page frames of size 4 KB similar to the block size.
+And these page frames contain the actual code and data of the process which is being executed.
+Now we have seen these in a previous video.
+But the question which we need to ask is; where does the operating system or where does
+Where does the kernel reside?
+the kernel reside in this entire scheme.
+So as we know the kernel is an other software and has to be present in the RAM to execute.
+Thus, in most operating systems such as Linux as well as in the operating systems which
+we are studying that is xv6, the kernel resides in the lower part of the memory starting from
+page frames 1, 2, 3, and so on.
+Just like every other page frame the kernel two is divided into page frames of equal sized.
+Now since we are using the virtual addressing in the system, the page frames corresponding
+to the kernel are mapped into the virtual address space of the process.
+So, the kernel code and data are present above the MAX_SIZE and below a limit known as Max
+Limit.
+Now, again in the process’s page table there are entries corresponding to this map.
+For instance 7, 8, 9, and 10 corresponding to the blocks that have the kernel code and
+data and the page table tells us that they are mapped into page frames 1, 2, 3, and 4.
+Kernel and User Space
+Now, we could divide this particular virtual address space into two components.
+One is the user space which corresponds to the blue area which contains the user processes,
+code, data, and other segments such as the stack and heap.
+Again, there is the kernel space which corresponds to the kernel code data and other aspects
+of the kernel.
+So, the MAX_SIZE defines the boundary between the user space and the kernel space.
+A user program can only access any code or data present in this user space.
+The user program cannot access anything in the kernel space.
+On the other hand, the Kernel can access code as well as data in both the kernel space as
+well as the user space.
+So, this prevents the user space programs from maliciously modifying data or modifying
+kernel structures.
+So, another thing to notice is that there is a contiguous mapping between the kernel
+Contiguous Mapping of Kernel
+addresses in the virtual space of the process to the corresponding physical frames in which
+the kernel gets mapped into.
+For instance, the kernel blocks 7, 8, 9, and 10 get mapped into the contiguous page frames
+1, 2, 3, and 4.
+So, why is this contiguous mapping actually used?
+So, one most important aspect is that given this contiguous mapping it is easy for the
+kernel to make conversions from virtual address to physical address and vice versa.
+For instance, to convert from virtual address in the kernel space to the corresponding physical
+address in the page frames of the kernel a simple subtraction by MAX_SIZE would do the
+trick.
+For instance, in xv6 where the MAX_SIZE is defined as 0x80000000, a virtual address of
+0x80124345 can be converted to the corresponding physical address by subtracting the MAX_SIZE.
+So, the physical address would be simply written as 0x00124345.
+Similarly, a physical address corresponding in the kernel code and a data in the kernel
+page frames can be converted to the corresponding virtual address in the kernel space by adding
+MAX_SIZE.
+For example, in this case the physical address 0x00124345 can be converted to the corresponding
+virtual address in the kernel space by adding this MAX_SIZE to get - 0x80124345.
+So, what happens when we have multiple processes in the system?
+Kernel and multiple processes
+The kernel space is mapped identically in all virtual address spaces of every process.
+For instance, above MAX_SIZE and below Max Limit the kernel space is present in all processes.
+Similarly, the page table in each process also has an identical mapping between the
+kernel page tables and the corresponding page frames that the kernel occupies, as can be
+seen in these few entries as well as these few entries.
+Now one thing to be noticed is that, all though the virtual address space of each process
+has different entries for the kernel.
+However all processes eventually map their kernel space into the same page frames in
+the RAM.
+So, what this means is that, we have just a single copy of the kernel present in the
+RAM.
+However, there can be multiple identical entries in each processes page table corresponding
+to the kernel code and data.
+Kernel Data about a Process • Corresponding to each process, the kernel keeps some metadata
+Now that we have seen where the kernel exist in the RAM as well as where it gets map to
+in the virtual address space of each process, now we will look at what metadata the kernel
+has corresponding to each process that runs in the system.
+So, each process in the system has 3 metadata known as; the process control block, a kernel
+stack for that user process and the corresponding page table for that user process.
+So, each process that runs in the system will have these three blocks that is unique for
+that process.
+So we have already seen a page tables map the virtual addressable space of that user
+process to the corresponding page frames that the process occupies.
+Now we will look at the other two metadata.
+So, we have learnt that corresponding to each process there are various segments, and one
+Process Stacks
+important segment is the stack of the process.
+So this process stack present in the user space would have information such as the local
+variables and also information about function calls.

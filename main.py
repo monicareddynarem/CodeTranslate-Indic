@@ -1,222 +1,129 @@
-"""
-CS Lecture Translator — English to Any Regional Language
-=========================================================
-Translates CS lecture transcripts while preserving technical terminology.
+import argparse
+import re
+import sys
+from pathlib import Path
 
-Pipeline:
-  1. Select target language interactively
-  2. Load CS term dictionaries (with ambiguity annotations)
-  3. Run NER to detect CS terms in the input text
-  4. Classify terms into must-preserve vs context-dependent
-  5. Send to Gemini with structured instructions for translation
-  6. Save output transcript
+# Project paths
+BASE_DIR = Path(__file__).resolve().parent.parent
+INPUT_FILE = BASE_DIR / "input" / "lecture.txt"
+OUTPUT_DIR = BASE_DIR / "output"
+DICT_DIR = BASE_DIR / "dictionaries"
 
-Usage:
-  1. Place your lecture transcript in  input/lecture.txt
-  2. Set your API key:  set GEMINI_API_KEY=your_key_here
-  3. Run:  python main.py
-"""
+# Ensure output directory exists
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-import os
+# Import pipeline components
 from src.lexicon import generate_lexicon
 from src.pipeline import setup_ner_pipeline
 from src.classifier import classify_entities, format_term_lists
 from src.translator import translate
-from src.tts import generate_audio, select_voice
+from src.tts import generate_audio  # function that creates WAV from text
 
+# ---------------------------------------------------------------------------
+# Argument parsing – efficient Indic language selector and transliteration flag
+# ---------------------------------------------------------------------------
+parser = argparse.ArgumentParser(description="CodeTranslate‑Indic pipeline")
+parser.add_argument(
+    "--lang",
+    type=str,
+    required=False,
+    help="Target Indic language (e.g., telugu, hindi, bengali).",
+)
+parser.add_argument(
+    "--transliterate",
+    action="store_true",
+    help="Transliterate technical terms into the target script instead of keeping them in English.",
+)
+args = parser.parse_args()
 
-# --- Configuration ---
-DICT_DIR   = "dictionaries"
-INPUT_FILE = os.path.join("input", "lecture.txt")
-OUTPUT_DIR = "output"
-NER_REPORT = os.path.join(OUTPUT_DIR, "ner_report.txt")
+# Supported Indic languages (name → human‑readable identifier used in prompts)
+INDIC_LANGS = {
+    "telugu": "Telugu",
+    "tamil": "Tamil",
+    "hindi": "Hindi",
+    "bengali": "Bengali",
+    "marathi": "Marathi",
+    "gujarati": "Gujarati",
+    "punjabi": "Punjabi",
+    "kannada": "Kannada",
+    "malayalam": "Malayalam",
+}
 
-# Suggested languages shown to the user (they can also type any other language)
-SUGGESTED_LANGUAGES = [
-    "Telugu",
-    "Hindi",
-    "Tamil",
-    "Kannada",
-    "Malayalam",
-    "Bengali",
-    "Marathi",
-    "Gujarati",
-    "Punjabi",
-    "Odia",
-]
-
-
-def select_language():
-    """
-    Interactively prompts the user to choose a target language.
-    Returns the chosen language name as a string.
-    """
-    print("\n" + "=" * 60)
-    print("  CS LECTURE TRANSLATOR")
-    print("=" * 60)
-    print("\nAvailable languages (or type any other language name):\n")
-    for i, lang in enumerate(SUGGESTED_LANGUAGES, 1):
-        print(f"  [{i:2d}]  {lang}")
-    print()
-
-    while True:
-        choice = input("Enter a number or type a language name: ").strip()
-
-        if not choice:
-            print("  Please enter a number or language name.")
-            continue
-
-        # If user entered a number, map to the suggested list
-        if choice.isdigit():
-            idx = int(choice) - 1
-            if 0 <= idx < len(SUGGESTED_LANGUAGES):
-                return SUGGESTED_LANGUAGES[idx]
-            else:
-                print(f"  Please enter a number between 1 and {len(SUGGESTED_LANGUAGES)}.")
-                continue
-
-        # Otherwise treat the raw input as a language name
-        # Capitalise the first letter for consistency
-        return choice.strip().title()
-
-
-def get_output_filename(target_language):
-    """Returns the output file path based on the selected language."""
-    safe_name = target_language.lower().replace(" ", "_")
-    return os.path.join(OUTPUT_DIR, f"translated_{safe_name}.txt")
-
-
-def main():
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-    # --------------------------------------------------
-    # Step 0: Select target language
-    # --------------------------------------------------
-    target_language = select_language()
-    output_file = get_output_filename(target_language)
-    print(f"\n  Target language: {target_language}")
-    print(f"  Output will be saved to: {output_file}\n")
-
-    # --------------------------------------------------
-    # Step 1: Build the CS lexicon from dictionary files
-    # --------------------------------------------------
-    print(f"[Step 1/5] Building lexicon from '{DICT_DIR}'...")
-    cs_patterns, ambiguous_terms = generate_lexicon(DICT_DIR)
-
-    if not cs_patterns:
-        print(f"  ERROR: No patterns found! Add terms to the .txt files in '{DICT_DIR}'.")
-        return
-
-    print(f"  Loaded {len(cs_patterns)} patterns ({len(ambiguous_terms)} marked as ambiguous)")
-
-    # --------------------------------------------------
-    # Step 2: Read the input lecture transcript
-    # --------------------------------------------------
-    print(f"\n[Step 2/5] Reading input from '{INPUT_FILE}'...")
-
-    if not os.path.exists(INPUT_FILE):
-        print(f"  ERROR: '{INPUT_FILE}' not found!")
-        print(f"  Please paste your lecture transcript into that file and run again.")
-        return
-
-    with open(INPUT_FILE, 'r', encoding='utf-8') as f:
-        lecture_text = f.read().strip()
-
-    if not lecture_text:
-        print(f"  ERROR: '{INPUT_FILE}' is empty!")
-        return
-
-    # Normalise smart quotes
-    lecture_text = lecture_text.replace("\u2018", "'").replace("\u2019", "'")
-    print(f"  Read {len(lecture_text)} characters ({lecture_text.count(chr(10)) + 1} lines)")
-
-    # --------------------------------------------------
-    # Step 3: Run NER to detect CS terms
-    # --------------------------------------------------
-    print(f"\n[Step 3/5] Running NER pipeline...")
-    nlp = setup_ner_pipeline(cs_patterns)
-    doc = nlp(lecture_text)
-    print(f"  Detected {len(doc.ents)} entity mentions")
-
-    # --------------------------------------------------
-    # Step 4: Classify entities
-    # --------------------------------------------------
-    print(f"\n[Step 4/5] Classifying detected terms...")
-    must_preserve, context_dependent = classify_entities(doc, ambiguous_terms)
-    preserve_str, context_str = format_term_lists(must_preserve, context_dependent)
-
-    print(f"  Must-preserve (unambiguous): {len(must_preserve)} unique terms")
-    print(f"  Context-dependent (ambiguous): {len(context_dependent)} unique terms")
-
-    # Save NER report for inspection
-    with open(NER_REPORT, 'w', encoding='utf-8') as f:
-        f.write("=" * 60 + "\n")
-        f.write("NER CLASSIFICATION REPORT\n")
-        f.write("=" * 60 + "\n\n")
-        f.write(f"Target language: {target_language}\n\n")
-        f.write("MUST-PRESERVE TERMS (always kept in English):\n")
-        f.write(preserve_str + "\n\n")
-        f.write("CONTEXT-DEPENDENT TERMS (LLM decides from context):\n")
-        f.write(context_str + "\n\n")
-        f.write("ALL DETECTED ENTITY MENTIONS:\n")
-        for ent in doc.ents:
-            std = ent.ent_id_ if ent.ent_id_ else ent.text
-            f.write(f"  [{ent.label_}] \"{ent.text}\" → {std}\n")
-    print(f"  NER report saved to '{NER_REPORT}'")
-
-    # --------------------------------------------------
-    # Step 5: Translate using Gemini
-    # --------------------------------------------------
-    print(f"\n[Step 5/5] Translating to {target_language}...")
-
+if args.lang:
+    key = args.lang.strip().lower()
+    # allow exact or prefix match (case‑insensitive)
+    matches = [k for k in INDIC_LANGS if k.startswith(key) or key.startswith(k)]
+    if not matches:
+        print(f"Unsupported language '{args.lang}'. Supported: {', '.join(INDIC_LANGS)}")
+        sys.exit(1)
+    selected_lang = matches[0]
+else:
+    # Interactive fallback menu
+    print("Select target Indic language:")
+    for i, name in enumerate(INDIC_LANGS.keys(), 1):
+        print(f"{i}. {name.title()}")
     try:
-        translated = translate(lecture_text, preserve_str, context_str, target_language)
-    except ValueError as e:
-        print(f"  ERROR: {e}")
-        return
-    except Exception as e:
-        print(f"  ERROR during translation: {e}")
-        return
+        choice = int(input("Enter number: ").strip())
+        selected_lang = list(INDIC_LANGS.keys())[choice - 1]
+    except Exception:
+        print("Invalid selection.")
+        sys.exit(1)
 
-    # Save the translated transcript
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(translated)
+# ---------------------------------------------------------------------------
+# Preserve code blocks (fenced ```...``` and inline back‑ticks) during translation
+# ---------------------------------------------------------------------------
+raw_text = INPUT_FILE.read_text(encoding="utf-8")
+code_blocks = {}
 
-    print(f"  Translation saved to '{output_file}'")
+def _store_block(match):
+    placeholder = f"__CODE_BLOCK_{len(code_blocks)}__"
+    code_blocks[placeholder] = match.group(0)
+    return placeholder
 
-    # --------------------------------------------------
-    # Done — ask about audio
-    # --------------------------------------------------
-    print("\n" + "=" * 60)
-    print("TRANSLATION COMPLETE!")
-    print("=" * 60)
-    print(f"\n  Language:    {target_language}")
-    print(f"  Input:       {INPUT_FILE}")
-    print(f"  NER Report:  {NER_REPORT}")
-    print(f"  Output:      {output_file}")
+# Replace fenced code blocks first, then inline back‑ticks
+text_no_fenced = re.sub(r"(?s)```.*?```", _store_block, raw_text)
+clean_text = re.sub(r"`[^`]+`", _store_block, text_no_fenced)
 
-    # Optional TTS step
-    print()
-    want_audio = input("Generate audio from the translated transcript? [y/N]: ").strip().lower()
-    if want_audio == "y":
-        voice_name = select_voice()
-        safe_name  = target_language.lower().replace(" ", "_")
-        audio_file = os.path.join(OUTPUT_DIR, f"lecture_{safe_name}.wav")
+# ---------------------------------------------------------------------------
+# NER pipeline setup
+# ---------------------------------------------------------------------------
+patterns, ambiguous_terms = generate_lexicon(str(DICT_DIR))
+nlp = setup_ner_pipeline(patterns)
 
-        print(f"\n[Bonus] Generating speech audio...")
-        try:
-            generate_audio(translated, audio_file, voice_name)
-            print(f"\n  Audio saved to '{audio_file}'")
-            print(f"  Open the WAV file with any media player (Windows Media Player,")
-            print(f"  VLC, etc.) to listen to the translated lecture.")
-        except Exception as e:
-            print(f"  ERROR during audio generation: {e}")
-    else:
-        print("\nSkipping audio. Run again and press 'y' to generate it anytime.")
+doc = nlp(clean_text)
+must_preserve, context_dependent = classify_entities(doc, ambiguous_terms)
 
-    print(f"\nTo translate different content, edit '{INPUT_FILE}' and run again.")
+# Convert entity lists to comma‑separated strings for the LLM prompt
+preserve_str, context_str = format_term_lists(must_preserve, context_dependent)
 
+# ---------------------------------------------------------------------------
+# Translation
+# ---------------------------------------------------------------------------
+translated = translate(
+    text=clean_text,
+    preserve_str=preserve_str,
+    context_str=context_str,
+    target_language=INDIC_LANGS[selected_lang],
+    transliterate=args.transliterate,
+)
 
+# Re‑insert the original code blocks
+for placeholder, block in code_blocks.items():
+    translated = translated.replace(placeholder, block)
 
-if __name__ == "__main__":
-    main()
+# ---------------------------------------------------------------------------
+# Write output file
+# ---------------------------------------------------------------------------
+out_path = OUTPUT_DIR / f"translated_{selected_lang}.txt"
+out_path.write_text(translated, encoding="utf-8")
+print(f"✅ Translation saved to {out_path}")
+
+# ---------------------------------------------------------------------------
+# Optional TTS generation
+# ---------------------------------------------------------------------------
+user_resp = input("Generate audio? [y/N] ").strip().lower()
+if user_resp.startswith('y'):
+    # generate_audio(text, language_code, output_path) – implementation resides in src/tts.py
+    audio_path = OUTPUT_DIR / f"lecture_{selected_lang}.wav"
+    generate_audio(translated, INDIC_LANGS[selected_lang], str(audio_path))
+    print(f"🔊 Audio saved to {audio_path}")
