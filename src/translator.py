@@ -6,22 +6,48 @@ import google.generativeai as genai
 from config import GEMINI_API_KEY
 
 # ---------------------------------------------------------------------------
-# Helper: build system prompt with optional transliteration rule
+# Script name for each supported Indic language (used in the prompt)
 # ---------------------------------------------------------------------------
+_SCRIPT_MAP = {
+    "telugu":    "Telugu script (Unicode)",
+    "hindi":     "Devanagari script",
+    "bengali":   "Bengali script (Unicode)",
+    "tamil":     "Tamil script (Unicode)",
+    "marathi":   "Devanagari script",
+    "gujarati":  "Gujarati script (Unicode)",
+    "punjabi":   "Gurmukhi script",
+    "kannada":   "Kannada script (Unicode)",
+    "malayalam": "Malayalam script (Unicode)",
+}
+
 
 def build_system_prompt(target_language: str, transliterate: bool) -> str:
+    script_name = _SCRIPT_MAP.get(target_language.strip().lower(), f"{target_language} native script")
+
     base = f"""You are a specialized translator for Computer Science (CS) lecture transcripts.
 Your ONLY task is to translate the non-technical English text into {target_language}.
 Technical CS terms MUST remain in English at all times.
 """
     if transliterate:
-        base += """
-Additionally, for every technical term that would normally stay in English, transliterate it into the native script of the target language (e.g., Hindi Devanagari, Telugu Unicode) while preserving the term's spelling.
+        base += f"""
+Additionally, for EVERY technical CS term that appears in the output, write it in the following
+format — English term first, followed immediately by its phonetic transliteration in {script_name}
+inside parentheses:
+
+    English_Term ({script_name} transliteration)
+
+Examples for {target_language}:
+  - memory ({script_name} → write how "memory" sounds in {script_name})
+  - Binary Search Tree ({script_name} → write how "Binary Search Tree" sounds in {script_name})
+  - Stack ({script_name} → write how "Stack" sounds in {script_name})
+
+This format MUST be applied consistently for EVERY language including {target_language}.
+Do NOT skip this transliteration for any technical term.
 """
-    # Rules (as previously defined, shortened for brevity)
-    base += """
+    base += f"""
 RULE 1 — MUST-PRESERVE LIST (absolutely non-negotiable)
-Every term in the MUST-PRESERVE list below MUST appear in the output EXACTLY as written in English.
+Every term in the MUST-PRESERVE list below MUST appear in the output EXACTLY as written in English
+(with its {script_name} transliteration in parentheses if transliteration is enabled).
 
 RULE 2 — CS FIELD AND DOMAIN NAMES (never translate)
 Computer Science, Data Structures, Operating Systems, Database Management Systems, Computer Networks, Algorithms, Compiler Design, Sorting Algorithms, Graph Algorithms, Data Types must stay in English.
@@ -39,6 +65,7 @@ RULE 6 — FORMATTING
 Preserve paragraph breaks; output ONLY the translated text.
 """
     return base
+
 
 # ---------------------------------------------------------------------------
 # Translation function

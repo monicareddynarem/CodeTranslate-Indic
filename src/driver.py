@@ -27,6 +27,7 @@ def run_full_pipeline(
     english_text: str,
     target_language: str,
     transliterate: bool = False,
+    voice_override: str | None = None,
     progress_callback=None,
 ) -> tuple[str, str]:
     """Run the complete translation + TTS pipeline.
@@ -53,7 +54,13 @@ def run_full_pipeline(
 
     # ---------- TTS ----------
     audio_path = str(OUTPUT_DIR / f"lecture_{target_language.lower()}.wav")
-    generate_audio(translated, target_language, audio_path, progress_callback=progress_callback)
+    generate_audio(
+        translated,
+        target_language,
+        audio_path,
+        voice_override=voice_override,
+        progress_callback=progress_callback,
+    )
 
     return translated, audio_path
 

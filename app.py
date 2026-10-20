@@ -10,6 +10,7 @@ if str(ROOT) not in sys.path:
 # Local modules
 from src.stt import speech_to_text
 from src.driver import run_full_pipeline
+from src.tts import AVAILABLE_VOICES, VOICE_MAP
 
 # ---------------------------------------------------------------------------
 # UI layout
@@ -43,77 +44,105 @@ if not (audio_file or txt_file):
 # Language selection & options
 # ---------------------------------------------------------------------------
 INDIC_LANGS = {
-    "telugu": "Telugu",
-    "tamil": "Tamil",
-    "hindi": "Hindi",
-    "bengali": "Bengali",
-    "marathi": "Marathi",
-    "gujarati": "Gujarati",
-    "punjabi": "Punjabi",
-    "kannada": "Kannada",
+    "telugu":    "Telugu",
+    "tamil":     "Tamil",
+    "hindi":     "Hindi",
+    "bengali":   "Bengali",
+    "marathi":   "Marathi",
+    "gujarati":  "Gujarati",
+    "punjabi":   "Punjabi",
+    "kannada":   "Kannada",
     "malayalam": "Malayalam",
 }
 
-lang_name = st.selectbox("Target Indic language", list(INDIC_LANGS.values()))
-# Find the key that matches the selected name (case‑insensitive)
-lang_key = next(k for k, v in INDIC_LANGS.items() if v.lower() == lang_name.lower())
+col_lang, col_voice = st.columns(2)
+with col_lang:
+    lang_name = st.selectbox("Target Indic language", list(INDIC_LANGS.values()))
+    lang_key = next(k for k, v in INDIC_LANGS.items() if v.lower() == lang_name.lower())
+
+with col_voice:
+    # Show default voice for the selected language, but allow override
+    default_voice = VOICE_MAP.get(lang_key, "Charon")
+    default_idx = AVAILABLE_VOICES.index(default_voice) if default_voice in AVAILABLE_VOICES else 0
+    selected_voice = st.selectbox(
+        "TTS Voice",
+        AVAILABLE_VOICES,
+        index=default_idx,
+        help="Charon & Fenrir are male; Aoede, Kore & Leda are female; others are neutral.",
+    )
 
 transliterate = st.checkbox("Transliterate technical terms into the target script", value=False)
 
 if st.button("Translate & Generate Audio"):
-    # UI feedback while processing
     with st.spinner("Processing…"):
-        # Progress bar placeholder
         progress_placeholder = st.empty()
         progress_bar = st.progress(0)
 
         def _update_progress(current: int, total: int) -> None:
-            # Update Streamlit progress bar (0‑100)
             progress = int(current / total * 100)
             progress_bar.progress(progress)
-            progress_placeholder.text(f"Processing chunk {current}/{total}…")
+            progress_placeholder.text(f"Generating audio chunk {current}/{total}…")
 
         # 1️⃣ Get English text
         if txt_file:
             english_text = txt_file.read().decode("utf-8")
         else:
-            # audio → STT
-            audio_bytes = audio_file.read()
-            english_text = speech_to_text(audio_bytes)
+            audio_bytes_input = audio_file.read()
+            mime_type = "audio/mpeg" if audio_file.name.lower().endswith(".mp3") else "audio/wav"
+            english_text = speech_to_text(audio_bytes_input, mime_type=mime_type)
             if not english_text:
                 st.error("Speech‑to‑text failed – please try a different audio file.")
                 st.stop()
 
-        # 2️⃣ Run the full pipeline (NER → translation → TTS) with progress callback
+        # 2️⃣ Run the full pipeline (NER → translation → TTS)
         indic_text, audio_path = run_full_pipeline(
             english_text=english_text,
             target_language=lang_key,
             transliterate=transliterate,
+            voice_override=selected_voice,
             progress_callback=_update_progress,
         )
-        # Clear progress UI after completion
+
         progress_placeholder.empty()
         progress_bar.empty()
 
-    # -------------------------------------------------------------------
-    # Display results
-    # -------------------------------------------------------------------
+        # 3️⃣ Save results in session_state so they survive Streamlit re-runs
+        st.session_state["result"] = {
+            "english_text": english_text,
+            "indic_text":   indic_text,
+            "audio_path":   audio_path,
+            "lang_name":    lang_name,
+            "lang_key":     lang_key,
+            "voice":        selected_voice,
+        }
+
+# ---------------------------------------------------------------------------
+# Display results – outside the button block so they persist on page re-runs
+# ---------------------------------------------------------------------------
+if "result" in st.session_state:
+    r = st.session_state["result"]
+
     st.success("✅ Translation and audio generation completed!")
+
     col_e, col_i = st.columns(2)
     with col_e:
         st.subheader("English transcript")
-        st.text_area("eng", value=english_text, height=300)
+        st.text_area("eng", value=r["english_text"], height=300, label_visibility="collapsed")
     with col_i:
-        st.subheader(f"{lang_name} transcript")
-        st.text_area("ind", value=indic_text, height=300)
+        st.subheader(f"{r['lang_name']} transcript")
+        st.text_area("ind", value=r["indic_text"], height=300, label_visibility="collapsed")
 
     # Audio playback and download
-    st.subheader("Synthesized audio (Indic)")
-    audio_bytes = Path(audio_path).read_bytes()
-    st.audio(audio_bytes, format="audio/wav")
-    st.download_button(
-        label="Download audio",
-        data=audio_bytes,
-        file_name=f"lecture_{lang_key}.wav",
-        mime="audio/wav",
-    )
+    st.subheader(f"Synthesized audio – {r['lang_name']} · Voice: {r['voice']}")
+    audio_file_path = Path(r["audio_path"])
+    if audio_file_path.is_file():
+        audio_bytes_out = audio_file_path.read_bytes()
+        st.audio(audio_bytes_out, format="audio/wav")
+        st.download_button(
+            label="⬇️ Download audio",
+            data=audio_bytes_out,
+            file_name=f"lecture_{r['lang_key']}_{r['voice']}.wav",
+            mime="audio/wav",
+        )
+    else:
+        st.warning("Audio file not found. Please run the pipeline again.")
