@@ -8,9 +8,9 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 
 # Local modules
-from src.stt import speech_to_text
+from src.stt    import speech_to_text
 from src.driver import run_full_pipeline
-from src.tts import AVAILABLE_VOICES, VOICE_MAP
+from src.tts    import AVAILABLE_VOICES, VOICE_MAP
 
 # ---------------------------------------------------------------------------
 # UI layout
@@ -22,8 +22,9 @@ st.markdown(
     **Localized translation of Computer‑Science lectures** –
     upload an **English audio file** *or* an **English transcript**, select a target Indic language, and get:
     1. the original English transcript,
-    2. the translated Indic transcript (with technical terms preserved or transliterated),
-    3. a synthetic audio version of the Indic transcript.
+    2. a translated transcript **with English technical terms preserved**,
+    3. a translated transcript **with all terms written in the target script**,
+    4. a synthetic audio version of the translation.
     """
 )
 
@@ -41,7 +42,7 @@ if not (audio_file or txt_file):
     st.stop()
 
 # ---------------------------------------------------------------------------
-# Language selection & options
+# Language + voice selection
 # ---------------------------------------------------------------------------
 INDIC_LANGS = {
     "telugu":    "Telugu",
@@ -58,29 +59,28 @@ INDIC_LANGS = {
 col_lang, col_voice = st.columns(2)
 with col_lang:
     lang_name = st.selectbox("Target Indic language", list(INDIC_LANGS.values()))
-    lang_key = next(k for k, v in INDIC_LANGS.items() if v.lower() == lang_name.lower())
+    lang_key  = next(k for k, v in INDIC_LANGS.items() if v.lower() == lang_name.lower())
 
 with col_voice:
-    # Show default voice for the selected language, but allow override
     default_voice = VOICE_MAP.get(lang_key, "Charon")
-    default_idx = AVAILABLE_VOICES.index(default_voice) if default_voice in AVAILABLE_VOICES else 0
+    default_idx   = AVAILABLE_VOICES.index(default_voice) if default_voice in AVAILABLE_VOICES else 0
     selected_voice = st.selectbox(
         "TTS Voice",
         AVAILABLE_VOICES,
         index=default_idx,
-        help="Charon & Fenrir are male; Aoede, Kore & Leda are female; others are neutral.",
+        help="Charon & Fenrir – male  |  Aoede, Kore & Leda – female  |  others – neutral",
     )
 
-transliterate = st.checkbox("Transliterate technical terms into the target script", value=False)
-
+# ---------------------------------------------------------------------------
+# Run button
+# ---------------------------------------------------------------------------
 if st.button("Translate & Generate Audio"):
-    with st.spinner("Processing…"):
+    with st.spinner("Processing… (this runs two translations + audio synthesis)"):
         progress_placeholder = st.empty()
         progress_bar = st.progress(0)
 
         def _update_progress(current: int, total: int) -> None:
-            progress = int(current / total * 100)
-            progress_bar.progress(progress)
+            progress_bar.progress(int(current / total * 100))
             progress_placeholder.text(f"Generating audio chunk {current}/{total}…")
 
         # 1️⃣ Get English text
@@ -94,11 +94,10 @@ if st.button("Translate & Generate Audio"):
                 st.error("Speech‑to‑text failed – please try a different audio file.")
                 st.stop()
 
-        # 2️⃣ Run the full pipeline (NER → translation → TTS)
-        indic_text, audio_path = run_full_pipeline(
+        # 2️⃣ Run pipeline → produces both transcript versions + audio in one go
+        normal_text, transliterated_text, audio_path = run_full_pipeline(
             english_text=english_text,
             target_language=lang_key,
-            transliterate=transliterate,
             voice_override=selected_voice,
             progress_callback=_update_progress,
         )
@@ -106,34 +105,63 @@ if st.button("Translate & Generate Audio"):
         progress_placeholder.empty()
         progress_bar.empty()
 
-        # 3️⃣ Save results in session_state so they survive Streamlit re-runs
+        # 3️⃣ Persist results so they survive Streamlit page re-runs
         st.session_state["result"] = {
-            "english_text": english_text,
-            "indic_text":   indic_text,
-            "audio_path":   audio_path,
-            "lang_name":    lang_name,
-            "lang_key":     lang_key,
-            "voice":        selected_voice,
+            "english_text":       english_text,
+            "normal_text":        normal_text,
+            "transliterated_text": transliterated_text,
+            "audio_path":         audio_path,
+            "lang_name":          lang_name,
+            "lang_key":           lang_key,
+            "voice":              selected_voice,
         }
 
 # ---------------------------------------------------------------------------
-# Display results – outside the button block so they persist on page re-runs
+# Display results – outside the button block so they survive re-runs
 # ---------------------------------------------------------------------------
 if "result" in st.session_state:
     r = st.session_state["result"]
 
     st.success("✅ Translation and audio generation completed!")
 
-    col_e, col_i = st.columns(2)
-    with col_e:
-        st.subheader("English transcript")
-        st.text_area("eng", value=r["english_text"], height=300, label_visibility="collapsed")
-    with col_i:
-        st.subheader(f"{r['lang_name']} transcript")
-        st.text_area("ind", value=r["indic_text"], height=300, label_visibility="collapsed")
+    # ----- Transcripts in three tabs -----
+    tab_eng, tab_normal, tab_trans = st.tabs([
+        "🇬🇧 English (original)",
+        f"🔤 {r['lang_name']} – English terms preserved",
+        f"🅰️ {r['lang_name']} – Fully in {r['lang_name']} script",
+    ])
 
-    # Audio playback and download
-    st.subheader(f"Synthesized audio – {r['lang_name']} · Voice: {r['voice']}")
+    with tab_eng:
+        st.text_area(
+            "English transcript",
+            value=r["english_text"],
+            height=350,
+            label_visibility="collapsed",
+        )
+
+    with tab_normal:
+        st.caption("Technical CS terms are kept in English; surrounding prose is in " + r["lang_name"] + ".")
+        st.text_area(
+            "Normal translation",
+            value=r["normal_text"],
+            height=350,
+            label_visibility="collapsed",
+        )
+
+    with tab_trans:
+        st.caption(
+            "All technical CS terms have been phonetically transliterated into the "
+            + r["lang_name"] + " script — no English words appear."
+        )
+        st.text_area(
+            "Transliterated translation",
+            value=r["transliterated_text"],
+            height=350,
+            label_visibility="collapsed",
+        )
+
+    # ----- Audio (generated from the normal-text version) -----
+    st.subheader(f"🔊 Synthesized audio – {r['lang_name']} · Voice: {r['voice']}")
     audio_file_path = Path(r["audio_path"])
     if audio_file_path.is_file():
         audio_bytes_out = audio_file_path.read_bytes()
