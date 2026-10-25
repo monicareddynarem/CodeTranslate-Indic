@@ -37,11 +37,11 @@ def run_full_pipeline(
         transliterated   (str): Indic transcript with all terms in target script.
         audio_path       (str): Path to the generated WAV file (from normal_text).
     """
-    # ---------- NER ----------
-    patterns, ambiguous_terms = generate_lexicon(str(DICT_DIR))
+    # ---------- NER  (ontology now returns 3 values) ----------
+    patterns, ambiguous_ids, entry_map = generate_lexicon(str(DICT_DIR))
     nlp = setup_ner_pipeline(patterns)
     doc = nlp(english_text)
-    must_preserve, context_dependent = classify_entities(doc, ambiguous_terms)
+    must_preserve, context_dependent = classify_entities(doc, ambiguous_ids, entry_map)
     preserve_str, context_str = format_term_lists(must_preserve, context_dependent)
 
     # ---------- Translation (both versions in one go) ----------

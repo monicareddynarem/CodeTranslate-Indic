@@ -1,0 +1,202 @@
+{
+  "metadata": {
+    "file": "hardware.json",
+    "category": "Computer Hardware",
+    "version": "1.0.0",
+    "description": "Canonical CS ontology entries for computer hardware components and architecture terms.",
+    "sources": ["Patterson & Hennessy – Computer Organisation and Design", "Wikipedia"],
+    "maintainer": "BTP Project"
+  },
+  "entries": [
+    {
+      "id": "cpu",
+      "term": "CPU",
+      "aliases": ["Central Processing Unit", "processor"],
+      "label": "HARDWARE",
+      "category": "Hardware > Processing",
+      "ambiguous": false,
+      "definition": "The central processing unit; the primary component that executes instructions of a program.",
+      "uri": "https://en.wikipedia.org/wiki/Central_processing_unit"
+    },
+    {
+      "id": "alu",
+      "term": "ALU",
+      "aliases": ["Arithmetic Logic Unit"],
+      "label": "HARDWARE",
+      "category": "Hardware > Processing",
+      "ambiguous": false,
+      "definition": "Arithmetic Logic Unit; a digital circuit that performs arithmetic and bitwise logic operations.",
+      "uri": "https://en.wikipedia.org/wiki/Arithmetic_logic_unit"
+    },
+    {
+      "id": "gpu",
+      "term": "GPU",
+      "aliases": ["Graphics Processing Unit", "graphics card"],
+      "label": "HARDWARE",
+      "category": "Hardware > Processing",
+      "ambiguous": false,
+      "definition": "Graphics Processing Unit; a specialised processor designed for parallel computation used in graphics and ML.",
+      "uri": "https://en.wikipedia.org/wiki/Graphics_processing_unit"
+    },
+    {
+      "id": "ram",
+      "term": "RAM",
+      "aliases": ["Random Access Memory", "main memory"],
+      "label": "HARDWARE",
+      "category": "Hardware > Memory",
+      "ambiguous": false,
+      "definition": "Random Access Memory; volatile primary memory where the OS and active programs are stored.",
+      "uri": "https://en.wikipedia.org/wiki/Random-access_memory"
+    },
+    {
+      "id": "rom",
+      "term": "ROM",
+      "aliases": ["Read-Only Memory"],
+      "label": "HARDWARE",
+      "category": "Hardware > Memory",
+      "ambiguous": false,
+      "definition": "Read-Only Memory; non-volatile memory that retains data without power, stores firmware.",
+      "uri": "https://en.wikipedia.org/wiki/Read-only_memory"
+    },
+    {
+      "id": "cache",
+      "term": "Cache",
+      "aliases": ["CPU cache", "cache memory", "L1 cache", "L2 cache"],
+      "label": "HARDWARE",
+      "category": "Hardware > Memory",
+      "ambiguous": true,
+      "definition": "A small, fast memory component that stores copies of frequently accessed data to reduce access time.",
+      "uri": "https://en.wikipedia.org/wiki/Cache_(computing)"
+    },
+    {
+      "id": "register",
+      "term": "Register",
+      "aliases": ["CPU register", "processor register"],
+      "label": "HARDWARE",
+      "category": "Hardware > Processing",
+      "ambiguous": true,
+      "definition": "A small, fast storage location within the CPU used to hold data being processed.",
+      "uri": "https://en.wikipedia.org/wiki/Processor_register"
+    },
+    {
+      "id": "control_unit",
+      "term": "Control Unit",
+      "aliases": ["CU", "instruction control unit"],
+      "label": "HARDWARE",
+      "category": "Hardware > Processing",
+      "ambiguous": false,
+      "definition": "The component of a CPU that directs the operation of the processor by fetching and decoding instructions.",
+      "uri": "https://en.wikipedia.org/wiki/Control_unit"
+    },
+    {
+      "id": "mmu",
+      "term": "Memory Management Unit",
+      "aliases": ["MMU"],
+      "label": "HARDWARE",
+      "category": "Hardware > Memory",
+      "ambiguous": false,
+      "definition": "Hardware component that handles memory access requests from the CPU and translates virtual to physical addresses.",
+      "uri": "https://en.wikipedia.org/wiki/Memory_management_unit"
+    },
+    {
+      "id": "system_bus",
+      "term": "System Bus",
+      "aliases": ["front-side bus", "address bus", "data bus"],
+      "label": "HARDWARE",
+      "category": "Hardware > Interconnect",
+      "ambiguous": false,
+      "definition": "A communication pathway that transfers data between the CPU, memory, and peripherals.",
+      "uri": "https://en.wikipedia.org/wiki/Bus_(computing)"
+    },
+    {
+      "id": "riscv",
+      "term": "RISC-V",
+      "aliases": ["RISC V", "riscv"],
+      "label": "HARDWARE",
+      "category": "Hardware > ISA",
+      "ambiguous": false,
+      "definition": "An open-source instruction set architecture (ISA) based on reduced instruction set computer principles.",
+      "uri": "https://en.wikipedia.org/wiki/RISC-V"
+    },
+    {
+      "id": "arm",
+      "term": "ARM",
+      "aliases": ["ARM architecture", "ARM processor"],
+      "label": "HARDWARE",
+      "category": "Hardware > ISA",
+      "ambiguous": true,
+      "definition": "A family of reduced instruction set computer ISAs developed by ARM Holdings.",
+      "uri": "https://en.wikipedia.org/wiki/ARM_architecture"
+    },
+    {
+      "id": "x86",
+      "term": "x86",
+      "aliases": ["x86 architecture", "x86-64", "AMD64"],
+      "label": "HARDWARE",
+      "category": "Hardware > ISA",
+      "ambiguous": false,
+      "definition": "A family of complex instruction set computer (CISC) ISAs originally developed by Intel.",
+      "uri": "https://en.wikipedia.org/wiki/X86"
+    },
+    {
+      "id": "fpga",
+      "term": "FPGA",
+      "aliases": ["Field Programmable Gate Array"],
+      "label": "HARDWARE",
+      "category": "Hardware > Reconfigurable",
+      "ambiguous": false,
+      "definition": "A reconfigurable integrated circuit that can be programmed after manufacturing.",
+      "uri": "https://en.wikipedia.org/wiki/Field-programmable_gate_array"
+    },
+    {
+      "id": "microprocessor",
+      "term": "Microprocessor",
+      "aliases": ["micro processor"],
+      "label": "HARDWARE",
+      "category": "Hardware > Processing",
+      "ambiguous": false,
+      "definition": "An integrated circuit that contains the functions of a CPU on a single chip.",
+      "uri": "https://en.wikipedia.org/wiki/Microprocessor"
+    },
+    {
+      "id": "clock_cycle",
+      "term": "Clock Cycle",
+      "aliases": ["clock cycles", "CPU clock cycle"],
+      "label": "HARDWARE",
+      "category": "Hardware > Processing",
+      "ambiguous": false,
+      "definition": "The basic unit of time for a processor, determined by its clock frequency.",
+      "uri": "https://en.wikipedia.org/wiki/Clock_rate"
+    },
+    {
+      "id": "pipeline",
+      "term": "Pipeline",
+      "aliases": ["instruction pipeline", "CPU pipeline"],
+      "label": "HARDWARE",
+      "category": "Hardware > Processing",
+      "ambiguous": true,
+      "definition": "A technique where multiple instruction phases are overlapped to improve CPU throughput.",
+      "uri": "https://en.wikipedia.org/wiki/Instruction_pipelining"
+    },
+    {
+      "id": "bus",
+      "term": "Bus",
+      "aliases": ["data bus", "computer bus"],
+      "label": "HARDWARE",
+      "category": "Hardware > Interconnect",
+      "ambiguous": true,
+      "definition": "A communication system that transfers data between components inside or between computers.",
+      "uri": "https://en.wikipedia.org/wiki/Bus_(computing)"
+    },
+    {
+      "id": "port",
+      "term": "Port",
+      "aliases": ["hardware port", "I/O port"],
+      "label": "HARDWARE",
+      "category": "Hardware > I/O",
+      "ambiguous": true,
+      "definition": "A physical connection point through which a computer can receive or transmit data.",
+      "uri": "https://en.wikipedia.org/wiki/Computer_port_(hardware)"
+    }
+  ]
+}

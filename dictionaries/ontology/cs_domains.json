@@ -1,0 +1,292 @@
+{
+  "metadata": {
+    "file": "cs_domains.json",
+    "category": "CS Domains",
+    "version": "1.0.0",
+    "description": "Proper nouns for CS subject/discipline names. These are never translated into any language.",
+    "sources": ["ACM CCS 2012", "Wikipedia"],
+    "maintainer": "BTP Project"
+  },
+  "entries": [
+    {
+      "id": "computer_science",
+      "term": "Computer Science",
+      "aliases": ["CS", "Computing"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Core",
+      "ambiguous": false,
+      "definition": "The study of computation, algorithms, data structures, programming languages, and computer systems.",
+      "uri": "https://en.wikipedia.org/wiki/Computer_science"
+    },
+    {
+      "id": "data_structure",
+      "term": "Data Structure",
+      "aliases": ["Data Structures"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Core",
+      "ambiguous": false,
+      "definition": "A discipline concerned with organising and storing data efficiently in computer memory.",
+      "uri": "https://en.wikipedia.org/wiki/Data_structure"
+    },
+    {
+      "id": "operating_system",
+      "term": "Operating System",
+      "aliases": ["Operating Systems", "OS"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Core",
+      "ambiguous": false,
+      "definition": "System software that manages hardware, software resources, and provides common services for computer programs.",
+      "uri": "https://en.wikipedia.org/wiki/Operating_system"
+    },
+    {
+      "id": "dbms",
+      "term": "Database Management System",
+      "aliases": ["DBMS", "Database Management Systems"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Core",
+      "ambiguous": false,
+      "definition": "Software that manages, stores, and retrieves structured data.",
+      "uri": "https://en.wikipedia.org/wiki/Database"
+    },
+    {
+      "id": "computer_networks",
+      "term": "Computer Networks",
+      "aliases": ["Computer Network", "Networking"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Core",
+      "ambiguous": false,
+      "definition": "A group of interconnected computers that share resources and communicate using networking protocols.",
+      "uri": "https://en.wikipedia.org/wiki/Computer_network"
+    },
+    {
+      "id": "computer_architecture",
+      "term": "Computer Architecture",
+      "aliases": ["Computer Organization", "Computer Organisation"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Core",
+      "ambiguous": false,
+      "definition": "The study of the design and organisation of computer hardware systems.",
+      "uri": "https://en.wikipedia.org/wiki/Computer_architecture"
+    },
+    {
+      "id": "compiler_design",
+      "term": "Compiler Design",
+      "aliases": ["Compiler", "Compilers"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Core",
+      "ambiguous": false,
+      "definition": "The study of designing and building compilers that translate high-level programs to machine code.",
+      "uri": "https://en.wikipedia.org/wiki/Compiler"
+    },
+    {
+      "id": "software_engineering",
+      "term": "Software Engineering",
+      "aliases": ["SE"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Core",
+      "ambiguous": false,
+      "definition": "The discipline of designing, developing, testing, and maintaining software systems.",
+      "uri": "https://en.wikipedia.org/wiki/Software_engineering"
+    },
+    {
+      "id": "theory_of_computation",
+      "term": "Theory of Computation",
+      "aliases": ["TOC", "Automata Theory"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Core",
+      "ambiguous": false,
+      "definition": "The mathematical study of what problems can be solved by algorithms and with what resources.",
+      "uri": "https://en.wikipedia.org/wiki/Theory_of_computation"
+    },
+    {
+      "id": "discrete_mathematics",
+      "term": "Discrete Mathematics",
+      "aliases": ["Discrete Maths", "Discrete Math"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Mathematics",
+      "ambiguous": false,
+      "definition": "Mathematics dealing with discrete (not continuous) objects such as graphs, logic, and combinatorics.",
+      "uri": "https://en.wikipedia.org/wiki/Discrete_mathematics"
+    },
+    {
+      "id": "ai",
+      "term": "Artificial Intelligence",
+      "aliases": ["AI"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Advanced",
+      "ambiguous": false,
+      "definition": "The simulation of human intelligence processes by computer systems.",
+      "uri": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+    },
+    {
+      "id": "machine_learning",
+      "term": "Machine Learning",
+      "aliases": ["ML"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Advanced",
+      "ambiguous": false,
+      "definition": "A subset of AI that enables computers to learn from data without being explicitly programmed.",
+      "uri": "https://en.wikipedia.org/wiki/Machine_learning"
+    },
+    {
+      "id": "deep_learning",
+      "term": "Deep Learning",
+      "aliases": ["DL", "deep neural networks"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Advanced",
+      "ambiguous": false,
+      "definition": "A subset of machine learning using multi-layered neural networks.",
+      "uri": "https://en.wikipedia.org/wiki/Deep_learning"
+    },
+    {
+      "id": "nlp",
+      "term": "Natural Language Processing",
+      "aliases": ["NLP"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Advanced",
+      "ambiguous": false,
+      "definition": "A field of AI focused on enabling computers to understand, interpret, and generate human language.",
+      "uri": "https://en.wikipedia.org/wiki/Natural_language_processing"
+    },
+    {
+      "id": "computer_vision",
+      "term": "Computer Vision",
+      "aliases": ["CV"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Advanced",
+      "ambiguous": false,
+      "definition": "A field of AI that enables computers to interpret and understand visual information from images and videos.",
+      "uri": "https://en.wikipedia.org/wiki/Computer_vision"
+    },
+    {
+      "id": "distributed_systems",
+      "term": "Distributed Systems",
+      "aliases": ["Distributed System", "Distributed Computing"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Systems",
+      "ambiguous": false,
+      "definition": "Systems where components located on networked computers communicate and coordinate to achieve a goal.",
+      "uri": "https://en.wikipedia.org/wiki/Distributed_computing"
+    },
+    {
+      "id": "parallel_computing",
+      "term": "Parallel Computing",
+      "aliases": ["Parallel Processing"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Systems",
+      "ambiguous": false,
+      "definition": "A computing paradigm where multiple processes are executed simultaneously.",
+      "uri": "https://en.wikipedia.org/wiki/Parallel_computing"
+    },
+    {
+      "id": "cloud_computing",
+      "term": "Cloud Computing",
+      "aliases": ["Cloud", "cloud services"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Systems",
+      "ambiguous": false,
+      "definition": "Delivering computing services over the internet including servers, storage, databases, and software.",
+      "uri": "https://en.wikipedia.org/wiki/Cloud_computing"
+    },
+    {
+      "id": "cybersecurity",
+      "term": "Cybersecurity",
+      "aliases": ["Information Security", "InfoSec", "Cyber Security"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Security",
+      "ambiguous": false,
+      "definition": "The practice of protecting systems, networks, and programs from digital attacks.",
+      "uri": "https://en.wikipedia.org/wiki/Computer_security"
+    },
+    {
+      "id": "web_development",
+      "term": "Web Development",
+      "aliases": ["Web Dev", "Web Engineering"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Applications",
+      "ambiguous": false,
+      "definition": "The work involved in developing a website or web application.",
+      "uri": "https://en.wikipedia.org/wiki/Web_development"
+    },
+    {
+      "id": "oop",
+      "term": "Object Oriented Programming",
+      "aliases": ["OOP", "Object-Oriented Programming"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Programming Paradigms",
+      "ambiguous": false,
+      "definition": "A programming paradigm based on the concept of objects that combine state (data) and behaviour (methods).",
+      "uri": "https://en.wikipedia.org/wiki/Object-oriented_programming"
+    },
+    {
+      "id": "functional_programming",
+      "term": "Functional Programming",
+      "aliases": ["FP"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Programming Paradigms",
+      "ambiguous": false,
+      "definition": "A programming paradigm that treats computation as the evaluation of mathematical functions.",
+      "uri": "https://en.wikipedia.org/wiki/Functional_programming"
+    },
+    {
+      "id": "data_science",
+      "term": "Data Science",
+      "aliases": [],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Advanced",
+      "ambiguous": false,
+      "definition": "An interdisciplinary field that uses scientific methods and algorithms to extract knowledge from data.",
+      "uri": "https://en.wikipedia.org/wiki/Data_science"
+    },
+    {
+      "id": "big_data",
+      "term": "Big Data",
+      "aliases": ["big data analytics"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Advanced",
+      "ambiguous": false,
+      "definition": "Extremely large datasets that require advanced tools for analysis and processing.",
+      "uri": "https://en.wikipedia.org/wiki/Big_data"
+    },
+    {
+      "id": "time_complexity",
+      "term": "Time Complexity",
+      "aliases": ["Space Complexity", "computational complexity"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Algorithms Theory",
+      "ambiguous": false,
+      "definition": "A measure of the amount of time or space an algorithm requires as a function of input size.",
+      "uri": "https://en.wikipedia.org/wiki/Time_complexity"
+    },
+    {
+      "id": "big_o",
+      "term": "Big O Notation",
+      "aliases": ["Big-O", "asymptotic notation", "O notation"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Algorithms Theory",
+      "ambiguous": false,
+      "definition": "Mathematical notation describing the limiting behaviour of an algorithm's complexity as input size grows.",
+      "uri": "https://en.wikipedia.org/wiki/Big_O_notation"
+    },
+    {
+      "id": "asymptotic_analysis",
+      "term": "Asymptotic Analysis",
+      "aliases": ["asymptotic complexity"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Algorithms Theory",
+      "ambiguous": false,
+      "definition": "Analysis of algorithm performance as input size approaches infinity.",
+      "uri": "https://en.wikipedia.org/wiki/Asymptotic_analysis"
+    },
+    {
+      "id": "shortest_path",
+      "term": "Shortest Path",
+      "aliases": ["shortest path problem"],
+      "label": "CS_DOMAIN",
+      "category": "CS Domains > Graph Theory",
+      "ambiguous": false,
+      "definition": "The path between two vertices in a graph that minimises the total edge weight.",
+      "uri": "https://en.wikipedia.org/wiki/Shortest_path_problem"
+    }
+  ]
+}

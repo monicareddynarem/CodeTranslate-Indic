@@ -1,0 +1,276 @@
+{
+  "metadata": {
+    "file": "dbms_concepts.json",
+    "category": "Database Management Systems",
+    "version": "1.0.0",
+    "description": "Canonical CS ontology entries for DBMS concepts.",
+    "sources": ["Database System Concepts – Silberschatz et al.", "Wikipedia"],
+    "maintainer": "BTP Project"
+  },
+  "entries": [
+    {
+      "id": "relational_schema",
+      "term": "Relational Schema",
+      "aliases": ["relational schemas"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Relational Model",
+      "ambiguous": false,
+      "definition": "A description of a relation (table) including its name, attributes, and their domains.",
+      "related_ids": ["normalization", "primary_key"],
+      "uri": "https://en.wikipedia.org/wiki/Database_schema"
+    },
+    {
+      "id": "normalization",
+      "term": "Normalization",
+      "aliases": ["database normalization", "DB normalization"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Schema Design",
+      "ambiguous": false,
+      "definition": "The process of organising database attributes to reduce redundancy and improve data integrity.",
+      "related_ids": ["relational_schema"],
+      "uri": "https://en.wikipedia.org/wiki/Database_normalization"
+    },
+    {
+      "id": "primary_key",
+      "term": "Primary Key",
+      "aliases": ["PK", "primary key constraint"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Relational Model",
+      "ambiguous": false,
+      "definition": "A column or set of columns that uniquely identifies each row in a database table.",
+      "related_ids": ["foreign_key", "relational_schema"],
+      "uri": "https://en.wikipedia.org/wiki/Primary_key"
+    },
+    {
+      "id": "foreign_key",
+      "term": "Foreign Key",
+      "aliases": ["FK", "foreign key constraint"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Relational Model",
+      "ambiguous": false,
+      "definition": "A column that establishes a link between two tables by referencing the primary key of another table.",
+      "related_ids": ["primary_key"],
+      "uri": "https://en.wikipedia.org/wiki/Foreign_key"
+    },
+    {
+      "id": "transaction",
+      "term": "Transaction",
+      "aliases": ["DB transaction", "database transaction"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Transaction Management",
+      "ambiguous": true,
+      "definition": "A sequence of database operations treated as a single unit that satisfies ACID properties.",
+      "related_ids": ["acid", "concurrency_control"],
+      "uri": "https://en.wikipedia.org/wiki/Database_transaction"
+    },
+    {
+      "id": "acid",
+      "term": "ACID Properties",
+      "aliases": ["ACID", "ACID compliance"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Transaction Management",
+      "ambiguous": false,
+      "definition": "A set of properties (Atomicity, Consistency, Isolation, Durability) that guarantee reliable transaction processing.",
+      "related_ids": ["transaction"],
+      "uri": "https://en.wikipedia.org/wiki/ACID"
+    },
+    {
+      "id": "wal",
+      "term": "Write-Ahead Logging",
+      "aliases": ["WAL", "write ahead log"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Recovery",
+      "ambiguous": false,
+      "definition": "A logging technique where changes are written to a log before being applied to the database, enabling recovery.",
+      "related_ids": ["transaction", "acid"],
+      "uri": "https://en.wikipedia.org/wiki/Write-ahead_logging"
+    },
+    {
+      "id": "indexing",
+      "term": "Indexing",
+      "aliases": ["database indexing", "DB index"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Query Optimisation",
+      "ambiguous": true,
+      "definition": "A data structure technique to speed up database query retrieval operations.",
+      "related_ids": ["query_optimization", "b_tree"],
+      "uri": "https://en.wikipedia.org/wiki/Database_index"
+    },
+    {
+      "id": "query_optimization",
+      "term": "Query Optimization",
+      "aliases": ["query optimisation", "SQL optimisation"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Query Optimisation",
+      "ambiguous": false,
+      "definition": "The process of selecting the most efficient execution plan for a given database query.",
+      "related_ids": ["indexing"],
+      "uri": "https://en.wikipedia.org/wiki/Query_optimization"
+    },
+    {
+      "id": "inner_join",
+      "term": "Inner Join",
+      "aliases": ["INNER JOIN", "equijoin"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > SQL",
+      "ambiguous": false,
+      "definition": "A SQL join that returns only rows with matching values in both tables.",
+      "related_ids": ["outer_join"],
+      "uri": "https://en.wikipedia.org/wiki/Join_(SQL)"
+    },
+    {
+      "id": "outer_join",
+      "term": "Outer Join",
+      "aliases": ["OUTER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL JOIN"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > SQL",
+      "ambiguous": false,
+      "definition": "A SQL join that includes all rows from one or both tables, with NULLs for non-matching rows.",
+      "related_ids": ["inner_join"],
+      "uri": "https://en.wikipedia.org/wiki/Join_(SQL)"
+    },
+    {
+      "id": "er_model",
+      "term": "Entity-Relationship Model",
+      "aliases": ["ER Model", "ER Diagram", "ERD"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Schema Design",
+      "ambiguous": false,
+      "definition": "A conceptual data model that describes entities, their attributes, and relationships between entities.",
+      "related_ids": ["relational_schema"],
+      "uri": "https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model"
+    },
+    {
+      "id": "concurrency_control",
+      "term": "Concurrency Control",
+      "aliases": ["database concurrency"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Transaction Management",
+      "ambiguous": false,
+      "definition": "Techniques to manage simultaneous database operations without conflicts.",
+      "related_ids": ["transaction", "isolation_level"],
+      "uri": "https://en.wikipedia.org/wiki/Concurrency_control"
+    },
+    {
+      "id": "isolation_level",
+      "term": "Isolation Level",
+      "aliases": ["transaction isolation", "isolation levels"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Transaction Management",
+      "ambiguous": false,
+      "definition": "Defines how/when the changes made by one operation become visible to other concurrent operations.",
+      "related_ids": ["acid", "concurrency_control"],
+      "uri": "https://en.wikipedia.org/wiki/Isolation_(database_systems)"
+    },
+    {
+      "id": "trigger",
+      "term": "Database Trigger",
+      "aliases": ["trigger", "SQL trigger"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Procedures",
+      "ambiguous": false,
+      "definition": "A stored procedure that automatically executes in response to specific database events.",
+      "related_ids": ["stored_procedure"],
+      "uri": "https://en.wikipedia.org/wiki/Database_trigger"
+    },
+    {
+      "id": "stored_procedure",
+      "term": "Stored Procedure",
+      "aliases": ["stored procedures", "DB procedure"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Procedures",
+      "ambiguous": false,
+      "definition": "A precompiled set of SQL statements stored in the database and executed as a unit.",
+      "related_ids": ["trigger"],
+      "uri": "https://en.wikipedia.org/wiki/Stored_procedure"
+    },
+    {
+      "id": "orm",
+      "term": "Object-Relational Mapping",
+      "aliases": ["ORM", "object relational mapping"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Access Layer",
+      "ambiguous": false,
+      "definition": "A programming technique for converting data between incompatible type systems using OOP languages.",
+      "related_ids": ["relational_schema"],
+      "uri": "https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping"
+    },
+    {
+      "id": "db_table",
+      "term": "Table",
+      "aliases": ["database table", "DB table", "relation"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Relational Model",
+      "ambiguous": true,
+      "definition": "A collection of related data stored in rows and columns in a relational database.",
+      "related_ids": ["relational_schema", "primary_key"],
+      "uri": "https://en.wikipedia.org/wiki/Table_(database)"
+    },
+    {
+      "id": "db_key",
+      "term": "Key",
+      "aliases": ["database key"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Relational Model",
+      "ambiguous": true,
+      "definition": "An attribute or set of attributes that uniquely identifies a tuple in a relation.",
+      "related_ids": ["primary_key", "foreign_key"],
+      "uri": "https://en.wikipedia.org/wiki/Superkey"
+    },
+    {
+      "id": "db_record",
+      "term": "Record",
+      "aliases": ["database record", "tuple", "DB row"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Relational Model",
+      "ambiguous": true,
+      "definition": "A single row in a database table representing one instance of an entity.",
+      "related_ids": ["db_table"],
+      "uri": "https://en.wikipedia.org/wiki/Record_(computer_science)"
+    },
+    {
+      "id": "db_index",
+      "term": "Index",
+      "aliases": ["database index", "DB index"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Query Optimisation",
+      "ambiguous": true,
+      "definition": "A database object that speeds up data retrieval operations on a table.",
+      "related_ids": ["indexing", "b_tree"],
+      "uri": "https://en.wikipedia.org/wiki/Database_index"
+    },
+    {
+      "id": "view",
+      "term": "View",
+      "aliases": ["database view", "SQL view", "virtual table"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > SQL",
+      "ambiguous": true,
+      "definition": "A stored query that presents data from one or more tables as a virtual table.",
+      "related_ids": ["db_table", "stored_procedure"],
+      "uri": "https://en.wikipedia.org/wiki/View_(SQL)"
+    },
+    {
+      "id": "schema",
+      "term": "Schema",
+      "aliases": ["DB schema", "database schema"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > Relational Model",
+      "ambiguous": false,
+      "definition": "The formal description of the structure of a database including tables, columns, and constraints.",
+      "related_ids": ["relational_schema"],
+      "uri": "https://en.wikipedia.org/wiki/Database_schema"
+    },
+    {
+      "id": "cursor",
+      "term": "Cursor",
+      "aliases": ["DB cursor", "database cursor"],
+      "label": "DBMS_CONCEPT",
+      "category": "DBMS > SQL",
+      "ambiguous": true,
+      "definition": "A database object used to retrieve, update, and delete rows from a result set one row at a time.",
+      "related_ids": ["stored_procedure"],
+      "uri": "https://en.wikipedia.org/wiki/Cursor_(databases)"
+    }
+  ]
+}

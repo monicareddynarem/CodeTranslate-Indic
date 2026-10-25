@@ -28,11 +28,22 @@ def build_system_prompt(target_language: str, transliterate: bool) -> str:
     transliterate=False → technical terms kept in English.
     transliterate=True  → technical terms written PURELY in the target script
                           (no English word alongside).
+
+    Term lists injected into the user prompt now include ontology metadata:
+    canonical ID, hierarchical category, and a one-line definition, allowing
+    the model to make better context-aware decisions.
     """
     script_name = _SCRIPT_MAP.get(target_language.strip().lower(), f"{target_language} native script")
 
     base = f"""You are a specialized translator for Computer Science (CS) lecture transcripts.
-Your ONLY task is to translate the non-technical English text into {target_language}.
+Your ONLY task is to translate the non-technical English prose into {target_language},
+while obeying the strict term-preservation rules below.
+
+The term lists you receive are generated from a structured CS ontology that covers:
+  Algorithms, Data Structures, Operating Systems, DBMS, Computer Architecture,
+  Hardware, Programming Keywords, and Advanced CS Concepts.
+Each listed term includes its ontology category and a short definition to help
+you identify whether an ambiguous word is being used in a technical CS sense.
 """
 
     if transliterate:
@@ -58,16 +69,20 @@ Technical CS terms MUST remain in English at all times.
 """
 
     preserve_rule = (
-        f"Write each term purely in {script_name} (phonetic transliteration)."
+        f"Write each term purely in {script_name} (phonetic transliteration only — no English)."
         if transliterate
-        else "Every term in the MUST-PRESERVE list MUST appear EXACTLY as written in English."
+        else (
+            "Every term in the MUST-PRESERVE list MUST appear EXACTLY as written in English.\n"
+            "Do NOT translate, paraphrase, or substitute these terms."
+        )
     )
     cs_domain_rule = (
-        f"Transliterate these into {script_name}."
+        f"Transliterate CS field and domain names into {script_name}."
         if transliterate
-        else "Computer Science, Data Structures, Operating Systems, Database Management Systems,"
-             " Computer Networks, Algorithms, Compiler Design, Sorting Algorithms, Graph Algorithms,"
-             " Data Types must stay in English."
+        else (
+            "All CS discipline names (e.g. Computer Science, Data Structures, Operating Systems,\n"
+            "  Database Management Systems, Algorithms, Compiler Design) MUST stay in English."
+        )
     )
     ambiguous_action = f"transliterate it into {script_name}" if transliterate else "keep it in English"
     unlisted_action  = f"transliterate it into {script_name}" if transliterate else "keep it in English"
@@ -80,31 +95,38 @@ RULE 2 — CS FIELD AND DOMAIN NAMES
 {cs_domain_rule}
 
 RULE 3 — CONTEXT-DEPENDENT TERMS
-If a term is in the CONTEXT-DEPENDENT list and is used as a CS concept, {ambiguous_action};
-otherwise translate it naturally to {target_language}.
+The CONTEXT-DEPENDENT list contains terms that have common non-CS meanings.
+Use the provided definition and category to judge whether the term is used as a CS concept:
+  • If it IS used as a CS concept → {ambiguous_action}.
+  • If it is used in a general/everyday sense → translate it naturally to {target_language}.
 
 RULE 4 — UNLISTED TECHNICAL TERMS
-If a term looks technical but is not listed, {unlisted_action}.
+If a term looks technical but does not appear in either list, {unlisted_action}.
 
-RULE 5 — NATURAL, NATIVE-SPEAKER STYLE
-Translate all prose into natural, idiomatic {{target_language}} as a fluent native speaker
-would say it in an educational lecture — NOT as a word-for-word or connector-for-connector
-mapping from English.
+RULE 5 — CODE BLOCKS AND INLINE KEYWORDS
+Do NOT translate or modify:
+  • Fenced code blocks (``` ... ```) — reproduce them verbatim.
+  • Inline back-tick expressions (` ... `).
+  • Programming language keywords (if, while, return, def, class, etc.).
+  • Variable names, function names, and identifiers.
+
+RULE 6 — NATURAL, NATIVE-SPEAKER STYLE
+Translate all prose into natural, idiomatic {target_language} as a fluent native speaker
+would say it in an educational lecture — NOT as a word-for-word mapping from English.
 
 Specifically:
-* Do NOT repeat the same connecting word or discourse filler (e.g. "so", "therefore",
+* Do NOT repeat the same discourse connector (e.g. "so", "therefore",
   "కాబట్టి", "तो", "সুতরাং", "எனவே", "ਇਸ ਲਈ", "તો", "ಆದ್ದರಿಂದ", "അതിനാല്")
-  at the start of every sentence. English lecture speech overuses "So" as a discourse filler;
-  it does NOT need to be translated — drop it, restructure the sentence to start directly
-  with the subject, or vary the connector naturally across sentences.
-* Vary sentence openings: mix direct subject starts, different connectors, and light
-  restructuring so the output sounds like natural speech, not a mechanical translation.
-* Prefer everyday conversational vocabulary over formal or literary equivalents when the
-  original English is informal or conversational.
-* Aim for the rhythm and flow a real teacher would use when explaining the topic live.
+  at the start of every sentence. English lectures overuse "So" as a filler —
+  drop it, restructure the sentence to open with the subject, or vary the connector.
+* Vary sentence openings; mix direct subject starts, different connectors, and light
+  restructuring so the output sounds like natural speech, not mechanical translation.
+* Prefer everyday conversational vocabulary when the original English is informal.
+* Aim for the rhythm and flow a real teacher would use when explaining live.
 
-RULE 6 — FORMATTING
-Preserve paragraph breaks; output ONLY the translated text.
+RULE 7 — FORMATTING
+Preserve paragraph breaks exactly. Output ONLY the translated text — no preamble,
+no meta-commentary, no markdown wrappers.
 """
     return base
 
@@ -114,10 +136,10 @@ def _build_user_prompt(text: str, preserve_str: str, context_str: str) -> str:
 Original Text:
 {text}
 ---
-Terms that MUST stay unchanged (or be fully transliterated in transliteration mode):
+MUST-PRESERVE terms (always keep in English, or transliterate in transliteration mode):
 {preserve_str or 'None'}
 ---
-Terms that are CONTEXT-DEPENDENT:
+CONTEXT-DEPENDENT terms (definition and category provided — judge by context):
 {context_str or 'None'}
 ---
 Translate the text according to the rules above.

@@ -17,7 +17,6 @@ from src.lexicon import generate_lexicon
 from src.pipeline import setup_ner_pipeline
 from src.classifier import classify_entities, format_term_lists
 from src.translator import translate
-from src.tts import generate_audio  # function that creates WAV from text
 
 # ---------------------------------------------------------------------------
 # Argument parsing – efficient Indic language selector and transliteration flag
@@ -85,15 +84,15 @@ text_no_fenced = re.sub(r"(?s)```.*?```", _store_block, raw_text)
 clean_text = re.sub(r"`[^`]+`", _store_block, text_no_fenced)
 
 # ---------------------------------------------------------------------------
-# NER pipeline setup
+# NER pipeline setup  (ontology now returns 3 values)
 # ---------------------------------------------------------------------------
-patterns, ambiguous_terms = generate_lexicon(str(DICT_DIR))
+patterns, ambiguous_ids, entry_map = generate_lexicon(str(DICT_DIR))
 nlp = setup_ner_pipeline(patterns)
 
 doc = nlp(clean_text)
-must_preserve, context_dependent = classify_entities(doc, ambiguous_terms)
+must_preserve, context_dependent = classify_entities(doc, ambiguous_ids, entry_map)
 
-# Convert entity lists to comma‑separated strings for the LLM prompt
+# Convert entity lists to enriched strings for the LLM prompt
 preserve_str, context_str = format_term_lists(must_preserve, context_dependent)
 
 # ---------------------------------------------------------------------------
@@ -117,13 +116,3 @@ for placeholder, block in code_blocks.items():
 out_path = OUTPUT_DIR / f"translated_{selected_lang}.txt"
 out_path.write_text(translated, encoding="utf-8")
 print(f"✅ Translation saved to {out_path}")
-
-# ---------------------------------------------------------------------------
-# Optional TTS generation
-# ---------------------------------------------------------------------------
-user_resp = input("Generate audio? [y/N] ").strip().lower()
-if user_resp.startswith('y'):
-    # generate_audio(text, language_code, output_path) – implementation resides in src/tts.py
-    audio_path = OUTPUT_DIR / f"lecture_{selected_lang}.wav"
-    generate_audio(translated, INDIC_LANGS[selected_lang], str(audio_path))
-    print(f"🔊 Audio saved to {audio_path}")

@@ -1,0 +1,320 @@
+{
+  "metadata": {
+    "file": "algorithms.json",
+    "category": "Algorithms",
+    "version": "1.0.0",
+    "description": "Canonical CS ontology entries for algorithmic concepts taught in undergraduate CS courses.",
+    "sources": ["CLRS (Introduction to Algorithms)", "Wikipedia", "GeeksforGeeks"],
+    "maintainer": "BTP Project"
+  },
+  "entries": [
+    {
+      "id": "sorting_algorithms",
+      "term": "Sorting Algorithms",
+      "aliases": ["sorting algorithm", "sort algorithm", "sorting techniques"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Sorting",
+      "ambiguous": false,
+      "definition": "A class of algorithms that arrange elements of a list in a certain order (ascending or descending).",
+      "related_ids": ["merge_sort", "quick_sort", "bubble_sort", "insertion_sort", "selection_sort", "heap_sort", "counting_sort", "bucket_sort", "radix_sort"],
+      "uri": "https://en.wikipedia.org/wiki/Sorting_algorithm"
+    },
+    {
+      "id": "binary_search",
+      "term": "Binary Search",
+      "aliases": ["binary search algorithm", "binary search technique"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Searching",
+      "ambiguous": false,
+      "definition": "A search algorithm that finds the position of a target value within a sorted array in O(log n) time.",
+      "related_ids": ["linear_search"],
+      "uri": "https://en.wikipedia.org/wiki/Binary_search_algorithm"
+    },
+    {
+      "id": "linear_search",
+      "term": "Linear Search",
+      "aliases": ["sequential search", "linear search algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Searching",
+      "ambiguous": false,
+      "definition": "A sequential search algorithm that checks each element until a match is found or the list ends.",
+      "related_ids": ["binary_search"],
+      "uri": "https://en.wikipedia.org/wiki/Linear_search"
+    },
+    {
+      "id": "dfs",
+      "term": "Depth First Search",
+      "aliases": ["Depth-First Search", "DFS", "depth first search"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Graph Traversal",
+      "ambiguous": false,
+      "definition": "A graph traversal algorithm that explores as far as possible along each branch before backtracking.",
+      "related_ids": ["bfs", "graph_algorithms"],
+      "uri": "https://en.wikipedia.org/wiki/Depth-first_search"
+    },
+    {
+      "id": "bfs",
+      "term": "Breadth First Search",
+      "aliases": ["Breadth-First Search", "BFS", "breadth first search"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Graph Traversal",
+      "ambiguous": false,
+      "definition": "A graph traversal algorithm that explores all neighbours at the present depth before moving to nodes at the next depth level.",
+      "related_ids": ["dfs", "graph_algorithms"],
+      "uri": "https://en.wikipedia.org/wiki/Breadth-first_search"
+    },
+    {
+      "id": "merge_sort",
+      "term": "Merge Sort",
+      "aliases": ["mergesort", "merge sort algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Sorting",
+      "ambiguous": false,
+      "definition": "A divide-and-conquer sorting algorithm with O(n log n) time complexity.",
+      "related_ids": ["sorting_algorithms", "divide_and_conquer"],
+      "uri": "https://en.wikipedia.org/wiki/Merge_sort"
+    },
+    {
+      "id": "quick_sort",
+      "term": "Quick Sort",
+      "aliases": ["quicksort", "quick sort algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Sorting",
+      "ambiguous": false,
+      "definition": "A divide-and-conquer sorting algorithm with average O(n log n) time complexity, uses a pivot element.",
+      "related_ids": ["sorting_algorithms", "divide_and_conquer"],
+      "uri": "https://en.wikipedia.org/wiki/Quicksort"
+    },
+    {
+      "id": "bubble_sort",
+      "term": "Bubble Sort",
+      "aliases": ["bubblesort", "bubble sort algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Sorting",
+      "ambiguous": false,
+      "definition": "A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if out of order.",
+      "related_ids": ["sorting_algorithms"],
+      "uri": "https://en.wikipedia.org/wiki/Bubble_sort"
+    },
+    {
+      "id": "insertion_sort",
+      "term": "Insertion Sort",
+      "aliases": ["insertionsort", "insertion sort algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Sorting",
+      "ambiguous": false,
+      "definition": "A simple sorting algorithm that builds the final sorted array one item at a time.",
+      "related_ids": ["sorting_algorithms"],
+      "uri": "https://en.wikipedia.org/wiki/Insertion_sort"
+    },
+    {
+      "id": "selection_sort",
+      "term": "Selection Sort",
+      "aliases": ["selectionsort", "selection sort algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Sorting",
+      "ambiguous": false,
+      "definition": "A sorting algorithm that divides input into sorted and unsorted regions and repeatedly selects the minimum element.",
+      "related_ids": ["sorting_algorithms"],
+      "uri": "https://en.wikipedia.org/wiki/Selection_sort"
+    },
+    {
+      "id": "heap_sort",
+      "term": "Heap Sort",
+      "aliases": ["heapsort", "heap sort algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Sorting",
+      "ambiguous": false,
+      "definition": "A comparison-based sorting algorithm that uses a binary heap data structure.",
+      "related_ids": ["sorting_algorithms"],
+      "uri": "https://en.wikipedia.org/wiki/Heapsort"
+    },
+    {
+      "id": "counting_sort",
+      "term": "Counting Sort",
+      "aliases": ["countingsort"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Sorting",
+      "ambiguous": false,
+      "definition": "A non-comparison-based integer sorting algorithm that counts element occurrences.",
+      "related_ids": ["sorting_algorithms"],
+      "uri": "https://en.wikipedia.org/wiki/Counting_sort"
+    },
+    {
+      "id": "bucket_sort",
+      "term": "Bucket Sort",
+      "aliases": ["bucketsort", "bin sort"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Sorting",
+      "ambiguous": false,
+      "definition": "A distribution-based sorting algorithm that distributes elements into buckets.",
+      "related_ids": ["sorting_algorithms"],
+      "uri": "https://en.wikipedia.org/wiki/Bucket_sort"
+    },
+    {
+      "id": "radix_sort",
+      "term": "Radix Sort",
+      "aliases": ["radixsort"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Sorting",
+      "ambiguous": false,
+      "definition": "A non-comparative integer sorting algorithm that sorts by individual digits.",
+      "related_ids": ["sorting_algorithms"],
+      "uri": "https://en.wikipedia.org/wiki/Radix_sort"
+    },
+    {
+      "id": "graph_algorithms",
+      "term": "Graph Algorithms",
+      "aliases": ["graph algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Graph",
+      "ambiguous": false,
+      "definition": "Algorithms that operate on graph data structures, including traversal, shortest path, and spanning tree algorithms.",
+      "related_ids": ["dfs", "bfs", "dijkstra", "bellman_ford", "floyd_warshall", "kruskal", "prim", "topological_sort"],
+      "uri": "https://en.wikipedia.org/wiki/Graph_theory"
+    },
+    {
+      "id": "dijkstra",
+      "term": "Dijkstra's Algorithm",
+      "aliases": ["Dijkstras", "dijkstra algorithm", "dijkstra's shortest path"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Graph > Shortest Path",
+      "ambiguous": false,
+      "definition": "A greedy algorithm that finds the shortest path from a single source to all other vertices in a weighted graph.",
+      "related_ids": ["graph_algorithms", "bellman_ford"],
+      "uri": "https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm"
+    },
+    {
+      "id": "a_star",
+      "term": "A* Search",
+      "aliases": ["A* algorithm", "A star", "A-star search"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Graph > Shortest Path",
+      "ambiguous": false,
+      "definition": "A best-first search algorithm that uses a heuristic to find the shortest path efficiently.",
+      "related_ids": ["graph_algorithms", "dijkstra"],
+      "uri": "https://en.wikipedia.org/wiki/A*_search_algorithm"
+    },
+    {
+      "id": "bellman_ford",
+      "term": "Bellman-Ford Algorithm",
+      "aliases": ["bellman ford", "bellman-ford"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Graph > Shortest Path",
+      "ambiguous": false,
+      "definition": "A shortest-path algorithm that handles graphs with negative edge weights.",
+      "related_ids": ["graph_algorithms", "dijkstra"],
+      "uri": "https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm"
+    },
+    {
+      "id": "floyd_warshall",
+      "term": "Floyd-Warshall Algorithm",
+      "aliases": ["floyd warshall", "floyd-warshall"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Graph > All Pairs Shortest Path",
+      "ambiguous": false,
+      "definition": "A dynamic programming algorithm for finding shortest paths between all pairs of vertices.",
+      "related_ids": ["graph_algorithms", "dynamic_programming"],
+      "uri": "https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm"
+    },
+    {
+      "id": "kruskal",
+      "term": "Kruskal's Algorithm",
+      "aliases": ["Kruskals", "kruskal algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Graph > Minimum Spanning Tree",
+      "ambiguous": false,
+      "definition": "A greedy algorithm that finds a minimum spanning tree by adding edges in increasing weight order.",
+      "related_ids": ["graph_algorithms", "prim"],
+      "uri": "https://en.wikipedia.org/wiki/Kruskal%27s_algorithm"
+    },
+    {
+      "id": "prim",
+      "term": "Prim's Algorithm",
+      "aliases": ["Prims", "prim algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Graph > Minimum Spanning Tree",
+      "ambiguous": false,
+      "definition": "A greedy algorithm that builds a minimum spanning tree by repeatedly adding the cheapest edge.",
+      "related_ids": ["graph_algorithms", "kruskal"],
+      "uri": "https://en.wikipedia.org/wiki/Prim%27s_algorithm"
+    },
+    {
+      "id": "topological_sort",
+      "term": "Topological Sort",
+      "aliases": ["Topological Sorting", "topological ordering"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Graph",
+      "ambiguous": false,
+      "definition": "A linear ordering of vertices in a directed acyclic graph such that for every directed edge u→v, u appears before v.",
+      "related_ids": ["graph_algorithms", "dfs"],
+      "uri": "https://en.wikipedia.org/wiki/Topological_sorting"
+    },
+    {
+      "id": "dynamic_programming",
+      "term": "Dynamic Programming",
+      "aliases": ["DP", "dynamic programming technique"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Paradigm",
+      "ambiguous": true,
+      "definition": "An algorithmic paradigm that solves complex problems by breaking them into overlapping subproblems and storing results.",
+      "related_ids": ["greedy_algorithm", "divide_and_conquer"],
+      "uri": "https://en.wikipedia.org/wiki/Dynamic_programming"
+    },
+    {
+      "id": "greedy_algorithm",
+      "term": "Greedy Algorithm",
+      "aliases": ["greedy method", "greedy approach"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Paradigm",
+      "ambiguous": false,
+      "definition": "An algorithmic paradigm that makes the locally optimal choice at each step hoping for a global optimum.",
+      "related_ids": ["dynamic_programming"],
+      "uri": "https://en.wikipedia.org/wiki/Greedy_algorithm"
+    },
+    {
+      "id": "divide_and_conquer",
+      "term": "Divide and Conquer",
+      "aliases": ["divide and conquer algorithm", "divide & conquer"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Paradigm",
+      "ambiguous": false,
+      "definition": "An algorithm design paradigm that divides a problem into smaller subproblems, solves them recursively, and combines results.",
+      "related_ids": ["merge_sort", "quick_sort", "dynamic_programming"],
+      "uri": "https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm"
+    },
+    {
+      "id": "backtracking",
+      "term": "Backtracking",
+      "aliases": ["backtrack", "backtracking algorithm"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Paradigm",
+      "ambiguous": false,
+      "definition": "An algorithmic technique that considers all possible combinations and backtracks when a solution path fails.",
+      "related_ids": ["dfs", "dynamic_programming"],
+      "uri": "https://en.wikipedia.org/wiki/Backtracking"
+    },
+    {
+      "id": "recursion",
+      "term": "Recursion",
+      "aliases": ["Recursive Algorithm", "recursive approach", "recursive function"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Paradigm",
+      "ambiguous": true,
+      "definition": "A method of solving problems where the solution depends on solutions to smaller instances of the same problem.",
+      "related_ids": ["dynamic_programming", "divide_and_conquer"],
+      "uri": "https://en.wikipedia.org/wiki/Recursion_(computer_science)"
+    },
+    {
+      "id": "brute_force",
+      "term": "Brute Force",
+      "aliases": ["brute force algorithm", "exhaustive search"],
+      "label": "ALGORITHM",
+      "category": "Algorithms > Paradigm",
+      "ambiguous": false,
+      "definition": "A straightforward approach to solving a problem by trying all possible solutions.",
+      "related_ids": ["backtracking"],
+      "uri": "https://en.wikipedia.org/wiki/Brute-force_search"
+    }
+  ]
+}

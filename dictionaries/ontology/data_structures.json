@@ -1,0 +1,265 @@
+{
+  "metadata": {
+    "file": "data_structures.json",
+    "category": "Data Structures",
+    "version": "1.0.0",
+    "description": "Canonical CS ontology entries for data structures taught in undergraduate CS courses.",
+    "sources": ["CLRS (Introduction to Algorithms)", "Wikipedia", "GeeksforGeeks"],
+    "maintainer": "BTP Project"
+  },
+  "entries": [
+    {
+      "id": "array",
+      "term": "Array",
+      "aliases": ["Arrays", "array data structure"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Linear",
+      "ambiguous": true,
+      "definition": "A collection of elements of the same type stored in contiguous memory locations, accessible by index.",
+      "related_ids": ["linked_list"],
+      "uri": "https://en.wikipedia.org/wiki/Array_data_structure"
+    },
+    {
+      "id": "linked_list",
+      "term": "Linked List",
+      "aliases": ["Linked Lists", "linked list data structure", "singly linked list"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Linear",
+      "ambiguous": false,
+      "definition": "A linear data structure where elements (nodes) are stored in non-contiguous memory and linked via pointers.",
+      "related_ids": ["array", "doubly_linked_list", "node"],
+      "uri": "https://en.wikipedia.org/wiki/Linked_list"
+    },
+    {
+      "id": "doubly_linked_list",
+      "term": "Doubly Linked List",
+      "aliases": ["doubly-linked list", "double linked list"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Linear",
+      "ambiguous": false,
+      "definition": "A linked list where each node contains a pointer to both the next and the previous node.",
+      "related_ids": ["linked_list"],
+      "uri": "https://en.wikipedia.org/wiki/Doubly_linked_list"
+    },
+    {
+      "id": "stack",
+      "term": "Stack",
+      "aliases": ["Stacks", "stack data structure", "LIFO stack"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Linear",
+      "ambiguous": true,
+      "definition": "A linear data structure following Last-In-First-Out (LIFO) order, supporting push and pop operations.",
+      "related_ids": ["queue"],
+      "uri": "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
+    },
+    {
+      "id": "queue",
+      "term": "Queue",
+      "aliases": ["Queues", "queue data structure", "FIFO queue"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Linear",
+      "ambiguous": true,
+      "definition": "A linear data structure following First-In-First-Out (FIFO) order, supporting enqueue and dequeue operations.",
+      "related_ids": ["stack", "priority_queue", "deque"],
+      "uri": "https://en.wikipedia.org/wiki/Queue_(abstract_data_type)"
+    },
+    {
+      "id": "priority_queue",
+      "term": "Priority Queue",
+      "aliases": ["priority queue data structure"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Linear",
+      "ambiguous": false,
+      "definition": "An abstract data type similar to a queue where each element has a priority and high-priority elements are served first.",
+      "related_ids": ["queue", "heap"],
+      "uri": "https://en.wikipedia.org/wiki/Priority_queue"
+    },
+    {
+      "id": "deque",
+      "term": "Deque",
+      "aliases": ["double-ended queue", "dequeue"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Linear",
+      "ambiguous": false,
+      "definition": "A double-ended queue that supports insertion and deletion from both ends.",
+      "related_ids": ["queue", "stack"],
+      "uri": "https://en.wikipedia.org/wiki/Double-ended_queue"
+    },
+    {
+      "id": "hash_table",
+      "term": "Hash Table",
+      "aliases": ["Hash Tables", "Hash Map", "Hash Maps", "hashmap", "hash map"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Hashing",
+      "ambiguous": false,
+      "definition": "A data structure that maps keys to values using a hash function for average O(1) lookup.",
+      "related_ids": [],
+      "uri": "https://en.wikipedia.org/wiki/Hash_table"
+    },
+    {
+      "id": "binary_tree",
+      "term": "Binary Tree",
+      "aliases": ["Binary Trees", "binary tree data structure"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Tree",
+      "ambiguous": false,
+      "definition": "A tree data structure in which each node has at most two children, referred to as left and right child.",
+      "related_ids": ["binary_search_tree", "tree", "node"],
+      "uri": "https://en.wikipedia.org/wiki/Binary_tree"
+    },
+    {
+      "id": "binary_search_tree",
+      "term": "Binary Search Tree",
+      "aliases": ["Binary Search Trees", "BST"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Tree",
+      "ambiguous": false,
+      "definition": "A binary tree where each node's left subtree contains only nodes with keys less than the node's key, and right subtree only greater keys.",
+      "related_ids": ["binary_tree", "avl_tree", "red_black_tree"],
+      "uri": "https://en.wikipedia.org/wiki/Binary_search_tree"
+    },
+    {
+      "id": "avl_tree",
+      "term": "AVL Tree",
+      "aliases": ["AVL Trees", "AVL"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Tree > Self-Balancing",
+      "ambiguous": false,
+      "definition": "A self-balancing binary search tree where the heights of the two child subtrees differ by at most one.",
+      "related_ids": ["binary_search_tree", "red_black_tree"],
+      "uri": "https://en.wikipedia.org/wiki/AVL_tree"
+    },
+    {
+      "id": "red_black_tree",
+      "term": "Red-Black Tree",
+      "aliases": ["Red-Black Trees", "RB Tree"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Tree > Self-Balancing",
+      "ambiguous": false,
+      "definition": "A self-balancing binary search tree where each node has a colour (red or black) to ensure balanced height.",
+      "related_ids": ["binary_search_tree", "avl_tree"],
+      "uri": "https://en.wikipedia.org/wiki/Red%E2%80%93black_tree"
+    },
+    {
+      "id": "b_tree",
+      "term": "B-Tree",
+      "aliases": ["B-Trees", "balanced tree"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Tree",
+      "ambiguous": false,
+      "definition": "A self-balancing tree data structure that maintains sorted data and allows efficient insertions, deletions and lookups, widely used in databases.",
+      "related_ids": ["binary_search_tree"],
+      "uri": "https://en.wikipedia.org/wiki/B-tree"
+    },
+    {
+      "id": "trie",
+      "term": "Trie",
+      "aliases": ["Tries", "prefix tree", "digital tree"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Tree",
+      "ambiguous": false,
+      "definition": "A tree-like data structure used to store strings, where each node represents a common prefix.",
+      "related_ids": ["tree"],
+      "uri": "https://en.wikipedia.org/wiki/Trie"
+    },
+    {
+      "id": "graph",
+      "term": "Graph",
+      "aliases": ["Graphs", "graph data structure"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Graph",
+      "ambiguous": true,
+      "definition": "A non-linear data structure consisting of vertices (nodes) and edges connecting them.",
+      "related_ids": ["node", "edge", "adjacency_matrix", "adjacency_list"],
+      "uri": "https://en.wikipedia.org/wiki/Graph_(abstract_data_type)"
+    },
+    {
+      "id": "heap",
+      "term": "Heap",
+      "aliases": ["Heaps", "heap data structure"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Tree",
+      "ambiguous": true,
+      "definition": "A complete binary tree where each parent node is greater (max-heap) or smaller (min-heap) than its children.",
+      "related_ids": ["min_heap", "max_heap", "priority_queue"],
+      "uri": "https://en.wikipedia.org/wiki/Heap_(data_structure)"
+    },
+    {
+      "id": "min_heap",
+      "term": "Min-Heap",
+      "aliases": ["min heap", "minimum heap"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Tree",
+      "ambiguous": false,
+      "definition": "A heap where the parent node's key is always less than or equal to its children's keys.",
+      "related_ids": ["heap", "max_heap"],
+      "uri": "https://en.wikipedia.org/wiki/Heap_(data_structure)"
+    },
+    {
+      "id": "max_heap",
+      "term": "Max-Heap",
+      "aliases": ["max heap", "maximum heap"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Tree",
+      "ambiguous": false,
+      "definition": "A heap where the parent node's key is always greater than or equal to its children's keys.",
+      "related_ids": ["heap", "min_heap"],
+      "uri": "https://en.wikipedia.org/wiki/Heap_(data_structure)"
+    },
+    {
+      "id": "adjacency_matrix",
+      "term": "Adjacency Matrix",
+      "aliases": ["adjacency matrices"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Graph Representation",
+      "ambiguous": false,
+      "definition": "A 2D matrix representation of a graph where cell [i][j] indicates an edge between vertex i and vertex j.",
+      "related_ids": ["graph", "adjacency_list"],
+      "uri": "https://en.wikipedia.org/wiki/Adjacency_matrix"
+    },
+    {
+      "id": "adjacency_list",
+      "term": "Adjacency List",
+      "aliases": ["Adjacency Lists", "adjacency list representation"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Graph Representation",
+      "ambiguous": false,
+      "definition": "A collection of lists used to represent a graph, where each list contains the neighbours of a vertex.",
+      "related_ids": ["graph", "adjacency_matrix"],
+      "uri": "https://en.wikipedia.org/wiki/Adjacency_list"
+    },
+    {
+      "id": "tree",
+      "term": "Tree",
+      "aliases": ["Trees", "tree data structure"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Tree",
+      "ambiguous": true,
+      "definition": "A hierarchical non-linear data structure with a root node and subtrees of children, with no cycles.",
+      "related_ids": ["binary_tree", "node", "edge"],
+      "uri": "https://en.wikipedia.org/wiki/Tree_(data_structure)"
+    },
+    {
+      "id": "node",
+      "term": "Node",
+      "aliases": ["Nodes", "graph node", "tree node"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Primitives",
+      "ambiguous": true,
+      "definition": "A fundamental unit in linked lists, trees, and graphs that stores data and references to other nodes.",
+      "related_ids": ["linked_list", "tree", "graph"],
+      "uri": "https://en.wikipedia.org/wiki/Node_(computer_science)"
+    },
+    {
+      "id": "edge",
+      "term": "Edge",
+      "aliases": ["Edges", "graph edge"],
+      "label": "DATA_STRUCTURE",
+      "category": "Data Structures > Primitives",
+      "ambiguous": true,
+      "definition": "A connection between two nodes in a graph or tree.",
+      "related_ids": ["node", "graph"],
+      "uri": "https://en.wikipedia.org/wiki/Glossary_of_graph_theory"
+    }
+  ]
+}

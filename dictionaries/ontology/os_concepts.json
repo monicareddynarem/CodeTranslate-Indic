@@ -1,0 +1,309 @@
+{
+  "metadata": {
+    "file": "os_concepts.json",
+    "category": "Operating Systems",
+    "version": "1.0.0",
+    "description": "Canonical CS ontology entries for operating system concepts taught in undergraduate CS courses.",
+    "sources": ["Operating System Concepts – Silberschatz et al.", "Wikipedia"],
+    "maintainer": "BTP Project"
+  },
+  "entries": [
+    {
+      "id": "context_switch",
+      "term": "Context Switch",
+      "aliases": ["Context Switches", "Context Switching"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Process Management",
+      "ambiguous": false,
+      "definition": "The process of saving and restoring the state of a CPU so that multiple processes can share a single CPU resource.",
+      "related_ids": ["process", "scheduler"],
+      "uri": "https://en.wikipedia.org/wiki/Context_switch"
+    },
+    {
+      "id": "process",
+      "term": "Process",
+      "aliases": ["Processes", "OS process"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Process Management",
+      "ambiguous": false,
+      "definition": "An instance of a program in execution, consisting of code, data, stack, and OS resources.",
+      "related_ids": ["thread", "scheduler", "ipc"],
+      "uri": "https://en.wikipedia.org/wiki/Process_(computing)"
+    },
+    {
+      "id": "thread",
+      "term": "Thread",
+      "aliases": ["Threads", "OS thread", "execution thread"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Process Management",
+      "ambiguous": false,
+      "definition": "The smallest unit of CPU execution within a process; multiple threads share the process's memory space.",
+      "related_ids": ["process", "multithreading", "mutex"],
+      "uri": "https://en.wikipedia.org/wiki/Thread_(computing)"
+    },
+    {
+      "id": "multithreading",
+      "term": "Multithreading",
+      "aliases": ["multi-threading", "concurrent threads"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Concurrency",
+      "ambiguous": false,
+      "definition": "The ability of a CPU or a single process to execute multiple threads concurrently.",
+      "related_ids": ["thread", "mutex", "race_condition"],
+      "uri": "https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)"
+    },
+    {
+      "id": "mutex",
+      "term": "Mutex",
+      "aliases": ["Mutexes", "mutual exclusion lock", "mutual exclusion"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Synchronisation",
+      "ambiguous": false,
+      "definition": "A synchronisation primitive that grants exclusive access to a shared resource to only one thread at a time.",
+      "related_ids": ["semaphore", "critical_section", "deadlock"],
+      "uri": "https://en.wikipedia.org/wiki/Lock_(computer_science)"
+    },
+    {
+      "id": "semaphore",
+      "term": "Semaphore",
+      "aliases": ["Semaphores", "counting semaphore", "binary semaphore"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Synchronisation",
+      "ambiguous": false,
+      "definition": "A synchronisation variable used to control access to a common resource by multiple processes.",
+      "related_ids": ["mutex", "deadlock"],
+      "uri": "https://en.wikipedia.org/wiki/Semaphore_(programming)"
+    },
+    {
+      "id": "deadlock",
+      "term": "Deadlock",
+      "aliases": ["Deadlocks", "deadlock condition"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Synchronisation",
+      "ambiguous": false,
+      "definition": "A state where two or more processes are each waiting for the other to release a resource, resulting in indefinite blocking.",
+      "related_ids": ["mutex", "semaphore", "race_condition"],
+      "uri": "https://en.wikipedia.org/wiki/Deadlock"
+    },
+    {
+      "id": "virtual_memory",
+      "term": "Virtual Memory",
+      "aliases": ["virtual memory management"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Memory Management",
+      "ambiguous": false,
+      "definition": "A memory management technique that gives processes the illusion of having more memory than is physically available.",
+      "related_ids": ["paging", "segmentation", "page_fault"],
+      "uri": "https://en.wikipedia.org/wiki/Virtual_memory"
+    },
+    {
+      "id": "paging",
+      "term": "Paging",
+      "aliases": ["memory paging", "page-based memory management"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Memory Management",
+      "ambiguous": false,
+      "definition": "A memory management scheme that eliminates contiguous physical memory by dividing memory into fixed-size pages.",
+      "related_ids": ["virtual_memory", "page_fault", "segmentation"],
+      "uri": "https://en.wikipedia.org/wiki/Memory_paging"
+    },
+    {
+      "id": "segmentation",
+      "term": "Segmentation",
+      "aliases": ["memory segmentation"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Memory Management",
+      "ambiguous": false,
+      "definition": "A memory management scheme that divides memory into variable-size segments corresponding to logical units.",
+      "related_ids": ["virtual_memory", "paging"],
+      "uri": "https://en.wikipedia.org/wiki/Memory_segmentation"
+    },
+    {
+      "id": "page_fault",
+      "term": "Page Fault",
+      "aliases": ["Page Faults"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Memory Management",
+      "ambiguous": false,
+      "definition": "An exception raised when a process accesses a memory page that is not currently in physical RAM.",
+      "related_ids": ["paging", "virtual_memory", "thrashing"],
+      "uri": "https://en.wikipedia.org/wiki/Page_fault"
+    },
+    {
+      "id": "thrashing",
+      "term": "Thrashing",
+      "aliases": ["memory thrashing"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Memory Management",
+      "ambiguous": false,
+      "definition": "A condition where excessive paging activity causes poor system performance because the OS spends more time paging than executing.",
+      "related_ids": ["page_fault", "virtual_memory"],
+      "uri": "https://en.wikipedia.org/wiki/Thrashing_(computer_science)"
+    },
+    {
+      "id": "time_slice",
+      "term": "Time Slice",
+      "aliases": ["Time Slices", "Time Quantum", "time quantum"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Scheduling",
+      "ambiguous": false,
+      "definition": "The period of time for which a process is allowed to run in a preemptive multitasking system.",
+      "related_ids": ["round_robin", "scheduler"],
+      "uri": "https://en.wikipedia.org/wiki/Preemption_(computing)"
+    },
+    {
+      "id": "interrupt",
+      "term": "Interrupt",
+      "aliases": ["Interrupts", "hardware interrupt", "software interrupt"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > CPU Management",
+      "ambiguous": false,
+      "definition": "A signal to the processor that requires immediate attention, causing the CPU to suspend current execution.",
+      "related_ids": ["system_call"],
+      "uri": "https://en.wikipedia.org/wiki/Interrupt"
+    },
+    {
+      "id": "system_call",
+      "term": "System Call",
+      "aliases": ["System Calls", "syscall"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Kernel Interface",
+      "ambiguous": false,
+      "definition": "A programmatic interface through which user programs request services from the OS kernel.",
+      "related_ids": ["kernel", "interrupt"],
+      "uri": "https://en.wikipedia.org/wiki/System_call"
+    },
+    {
+      "id": "round_robin",
+      "term": "Round Robin",
+      "aliases": ["round-robin scheduling", "RR scheduling"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Scheduling",
+      "ambiguous": false,
+      "definition": "A CPU scheduling algorithm where each process is assigned a fixed time slice in cyclic order.",
+      "related_ids": ["sjf", "fcfs", "time_slice", "scheduler"],
+      "uri": "https://en.wikipedia.org/wiki/Round-robin_scheduling"
+    },
+    {
+      "id": "sjf",
+      "term": "Shortest Job First",
+      "aliases": ["SJF", "SJF scheduling"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Scheduling",
+      "ambiguous": false,
+      "definition": "A CPU scheduling algorithm that selects the process with the smallest execution time next.",
+      "related_ids": ["round_robin", "fcfs"],
+      "uri": "https://en.wikipedia.org/wiki/Shortest_job_next"
+    },
+    {
+      "id": "fcfs",
+      "term": "First Come First Serve",
+      "aliases": ["FCFS", "FIFO scheduling", "first come first served"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Scheduling",
+      "ambiguous": false,
+      "definition": "A CPU scheduling algorithm that assigns the CPU to processes in the order they arrive.",
+      "related_ids": ["round_robin", "sjf"],
+      "uri": "https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)"
+    },
+    {
+      "id": "ipc",
+      "term": "Inter-process Communication",
+      "aliases": ["IPC", "interprocess communication"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Process Management",
+      "ambiguous": false,
+      "definition": "Mechanisms that allow processes to communicate with each other and synchronise actions.",
+      "related_ids": ["process", "pipe", "semaphore"],
+      "uri": "https://en.wikipedia.org/wiki/Inter-process_communication"
+    },
+    {
+      "id": "race_condition",
+      "term": "Race Condition",
+      "aliases": ["Race Conditions", "data race"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Synchronisation",
+      "ambiguous": false,
+      "definition": "A bug where the outcome of a program depends on the non-deterministic order of thread execution.",
+      "related_ids": ["mutex", "critical_section", "deadlock"],
+      "uri": "https://en.wikipedia.org/wiki/Race_condition"
+    },
+    {
+      "id": "critical_section",
+      "term": "Critical Section",
+      "aliases": ["Critical Sections", "critical region"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Synchronisation",
+      "ambiguous": false,
+      "definition": "A section of code that accesses shared resources and must not be executed by more than one thread at a time.",
+      "related_ids": ["mutex", "race_condition"],
+      "uri": "https://en.wikipedia.org/wiki/Critical_section"
+    },
+    {
+      "id": "kernel",
+      "term": "Kernel",
+      "aliases": ["OS kernel", "operating system kernel"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Core",
+      "ambiguous": true,
+      "definition": "The central component of an operating system that manages CPU, memory, and device drivers.",
+      "related_ids": ["system_call", "process"],
+      "uri": "https://en.wikipedia.org/wiki/Kernel_(operating_system)"
+    },
+    {
+      "id": "shell",
+      "term": "Shell",
+      "aliases": ["command shell", "bash", "OS shell"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > User Interface",
+      "ambiguous": true,
+      "definition": "A user interface for accessing OS services, either command-line (CLI) or graphical (GUI).",
+      "related_ids": ["kernel", "system_call"],
+      "uri": "https://en.wikipedia.org/wiki/Shell_(computing)"
+    },
+    {
+      "id": "fork",
+      "term": "Fork",
+      "aliases": ["fork system call", "process fork"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Process Management",
+      "ambiguous": true,
+      "definition": "A system call that creates a new process (child) as a copy of the calling process (parent).",
+      "related_ids": ["process", "system_call"],
+      "uri": "https://en.wikipedia.org/wiki/Fork_(system_call)"
+    },
+    {
+      "id": "pipe",
+      "term": "Pipe",
+      "aliases": ["OS pipe", "anonymous pipe"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Process Management",
+      "ambiguous": true,
+      "definition": "A unidirectional data channel used for IPC between a writing process and a reading process.",
+      "related_ids": ["ipc", "process"],
+      "uri": "https://en.wikipedia.org/wiki/Pipeline_(Unix)"
+    },
+    {
+      "id": "scheduler",
+      "term": "Scheduler",
+      "aliases": ["CPU scheduler", "process scheduler"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Scheduling",
+      "ambiguous": false,
+      "definition": "The OS component that selects which process runs on the CPU at any given time.",
+      "related_ids": ["dispatcher", "round_robin", "sjf"],
+      "uri": "https://en.wikipedia.org/wiki/Scheduling_(computing)"
+    },
+    {
+      "id": "dispatcher",
+      "term": "Dispatcher",
+      "aliases": ["process dispatcher"],
+      "label": "OS_CONCEPT",
+      "category": "Operating Systems > Scheduling",
+      "ambiguous": false,
+      "definition": "The OS module that gives control of the CPU to the process selected by the scheduler.",
+      "related_ids": ["scheduler", "context_switch"],
+      "uri": "https://en.wikipedia.org/wiki/Scheduling_(computing)"
+    }
+  ]
+}

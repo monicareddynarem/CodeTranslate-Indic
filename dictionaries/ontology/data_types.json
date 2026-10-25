@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "file": "data_types.json",
+    "category": "Data Types",
+    "version": "1.0.0",
+    "description": "Canonical CS ontology entries for primitive and common data types used in programming.",
+    "sources": ["ISO C Standard", "Java Language Specification", "Wikipedia"],
+    "maintainer": "BTP Project"
+  },
+  "entries": [
+    {
+      "id": "integer",
+      "term": "integer",
+      "aliases": ["int", "Integer"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Numeric",
+      "ambiguous": false,
+      "definition": "A whole number data type (e.g., -3, 0, 42) with no fractional component.",
+      "uri": "https://en.wikipedia.org/wiki/Integer_(computer_science)"
+    },
+    {
+      "id": "float",
+      "term": "float",
+      "aliases": ["Float", "floating point"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Numeric",
+      "ambiguous": true,
+      "definition": "A single-precision floating-point data type for representing real numbers.",
+      "uri": "https://en.wikipedia.org/wiki/Floating-point_arithmetic"
+    },
+    {
+      "id": "double",
+      "term": "double",
+      "aliases": ["Double", "double precision"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Numeric",
+      "ambiguous": true,
+      "definition": "A double-precision floating-point data type providing more precision than float.",
+      "uri": "https://en.wikipedia.org/wiki/Double-precision_floating-point_format"
+    },
+    {
+      "id": "character",
+      "term": "character",
+      "aliases": ["char", "Character"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Text",
+      "ambiguous": false,
+      "definition": "A data type representing a single Unicode or ASCII character.",
+      "uri": "https://en.wikipedia.org/wiki/Character_(computing)"
+    },
+    {
+      "id": "string",
+      "term": "string",
+      "aliases": ["String", "str"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Text",
+      "ambiguous": true,
+      "definition": "A sequence of characters representing text.",
+      "uri": "https://en.wikipedia.org/wiki/String_(computer_science)"
+    },
+    {
+      "id": "boolean",
+      "term": "boolean",
+      "aliases": ["bool", "Boolean"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Logical",
+      "ambiguous": false,
+      "definition": "A data type that can hold one of two values: true or false.",
+      "uri": "https://en.wikipedia.org/wiki/Boolean_data_type"
+    },
+    {
+      "id": "pointer",
+      "term": "Pointer",
+      "aliases": ["Pointers", "memory pointer"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Memory",
+      "ambiguous": false,
+      "definition": "A variable that stores the memory address of another variable.",
+      "uri": "https://en.wikipedia.org/wiki/Pointer_(computer_programming)"
+    },
+    {
+      "id": "reference",
+      "term": "reference",
+      "aliases": ["Reference", "reference variable"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Memory",
+      "ambiguous": true,
+      "definition": "A value that provides indirect access to a particular data item in memory.",
+      "uri": "https://en.wikipedia.org/wiki/Reference_(computer_science)"
+    },
+    {
+      "id": "byte",
+      "term": "byte",
+      "aliases": ["Byte"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Numeric",
+      "ambiguous": false,
+      "definition": "An 8-bit integer data type.",
+      "uri": "https://en.wikipedia.org/wiki/Byte"
+    },
+    {
+      "id": "long",
+      "term": "long int",
+      "aliases": ["long", "unsigned long"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Numeric",
+      "ambiguous": false,
+      "definition": "An extended integer data type capable of storing larger values than a standard int.",
+      "uri": "https://en.wikipedia.org/wiki/Integer_(computer_science)"
+    },
+    {
+      "id": "short_int",
+      "term": "short int",
+      "aliases": ["short"],
+      "label": "DATA_TYPE",
+      "category": "Data Types > Numeric",
+      "ambiguous": false,
+      "definition": "A smaller integer type that uses less memory than a standard int.",
+      "uri": "https://en.wikipedia.org/wiki/Integer_(computer_science)"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "file": "advanced_concepts.json",
+    "category": "Advanced CS Concepts",
+    "version": "1.0.0",
+    "description": "Canonical CS ontology entries for advanced concepts that often span multiple sub-disciplines and may be ambiguous in non-CS contexts.",
+    "sources": ["Wikipedia", "CLRS", "GoF Design Patterns"],
+    "maintainer": "BTP Project"
+  },
+  "entries": [
+    {
+      "id": "polymorphism",
+      "term": "Polymorphism",
+      "aliases": ["polymorphic", "runtime polymorphism", "compile-time polymorphism"],
+      "label": "ADVANCED_CONCEPT",
+      "category": "Advanced Concepts > OOP",
+      "ambiguous": true,
+      "definition": "The ability of a single interface to represent different underlying forms (method overriding and overloading).",
+      "related_ids": ["oop", "inheritance", "encapsulation"],
+      "uri": "https://en.wikipedia.org/wiki/Polymorphism_(computer_science)"
+    },
+    {
+      "id": "inheritance",
+      "term": "Inheritance",
+      "aliases": ["class inheritance", "OOP inheritance"],
+      "label": "ADVANCED_CONCEPT",
+      "category": "Advanced Concepts > OOP",
+      "ambiguous": true,
+      "definition": "A mechanism where a class (child) derives properties and behaviour from another class (parent).",
+      "related_ids": ["polymorphism", "encapsulation"],
+      "uri": "https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)"
+    },
+    {
+      "id": "encapsulation",
+      "term": "Encapsulation",
+      "aliases": ["data hiding", "information hiding"],
+      "label": "ADVANCED_CONCEPT",
+      "category": "Advanced Concepts > OOP",
+      "ambiguous": false,
+      "definition": "Bundling data and the methods that operate on it into a single unit (class), hiding internal details.",
+      "related_ids": ["polymorphism", "inheritance"],
+      "uri": "https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)"
+    },
+    {
+      "id": "abstraction",
+      "term": "Abstraction",
+      "aliases": ["data abstraction", "abstract class"],
+      "label": "ADVANCED_CONCEPT",
+      "category": "Advanced Concepts > OOP",
+      "ambiguous": true,
+      "definition": "Hiding complex implementation details and showing only the necessary features of an object.",
+      "related_ids": ["encapsulation", "polymorphism"],
+      "uri": "https://en.wikipedia.org/wiki/Abstraction_(computer_science)"
+    },
+    {
+      "id": "backpropagation",
+      "term": "Backpropagation",
+      "aliases": ["backprop", "backward propagation", "back propagation"],
+      "label": "ADVANCED_CONCEPT",
+      "category": "Advanced Concepts > Machine Learning",
+      "ambiguous": true,
+      "definition": "An algorithm for training artificial neural networks by computing gradients with respect to weights using the chain rule.",
+      "related_ids": ["deep_learning", "machine_learning"],
+      "uri": "https://en.wikipedia.org/wiki/Backpropagation"
+    },
+    {
+      "id": "garbage_collection",
+      "term": "Garbage Collection",
+      "aliases": ["GC", "automatic memory management"],
+      "label": "ADVANCED_CONCEPT",
+      "category": "Advanced Concepts > Memory Management",
+      "ambiguous": false,
+      "definition": "Automatic memory management that reclaims memory occupied by objects no longer in use.",
+      "related_ids": [],
+      "uri": "https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)"
+    },
+    {
+      "id": "design_pattern",
+      "term": "Design Pattern",
+      "aliases": ["Design Patterns", "software design pattern"],
+      "label": "ADVANCED_CONCEPT",
+      "category": "Advanced Concepts > Software Engineering",
+      "ambiguous": false,
+      "definition": "A reusable solution to a commonly occurring problem in software design.",
+      "related_ids": ["software_engineering", "oop"],
+      "uri": "https://en.wikipedia.org/wiki/Software_design_pattern"
+    },
+    {
+      "id": "api",
+      "term": "API",
+      "aliases": ["Application Programming Interface"],
+      "label": "ADVANCED_CONCEPT",
+      "category": "Advanced Concepts > Software Engineering",
+      "ambiguous": false,
+      "definition": "A set of definitions and protocols for building and integrating application software.",
+      "related_ids": ["software_engineering"],
+      "uri": "https://en.wikipedia.org/wiki/API"
+    },
+    {
+      "id": "concurrency",
+      "term": "Concurrency",
+      "aliases": ["concurrent programming", "concurrent execution"],
+      "label": "ADVANCED_CONCEPT",
+      "category": "Advanced Concepts > Systems",
+      "ambiguous": false,
+      "definition": "The ability of a system to execute multiple tasks in overlapping time periods.",
+      "related_ids": ["multithreading", "race_condition", "deadlock"],
+      "uri": "https://en.wikipedia.org/wiki/Concurrency_(computer_science)"
+    },
+    {
+      "id": "memoization",
+      "term": "Memoization",
+      "aliases": ["memoisation"],
+      "label": "ADVANCED_CONCEPT",
+      "category": "Advanced Concepts > Algorithms",
+      "ambiguous": false,
+      "definition": "An optimisation technique that caches the results of expensive function calls to avoid redundant computation.",
+      "related_ids": ["dynamic_programming", "recursion"],
+      "uri": "https://en.wikipedia.org/wiki/Memoization"
+    }
+  ]
+}

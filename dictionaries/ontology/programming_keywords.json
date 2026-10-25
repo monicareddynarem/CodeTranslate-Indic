@@ -1,0 +1,192 @@
+{
+  "metadata": {
+    "file": "programming_keywords.json",
+    "category": "Programming Keywords",
+    "version": "1.0.0",
+    "description": "Reserved keywords and control-flow terms from common programming languages. These are always preserved verbatim in the output.",
+    "sources": ["Python Language Reference", "Java Language Specification", "C++ Standard"],
+    "maintainer": "BTP Project"
+  },
+  "entries": [
+    {
+      "id": "kw_if",
+      "term": "if",
+      "aliases": [],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Control Flow",
+      "ambiguous": false,
+      "definition": "A conditional keyword that executes a block of code only when a condition evaluates to true.",
+      "uri": "https://en.wikipedia.org/wiki/Conditional_(computer_programming)"
+    },
+    {
+      "id": "kw_else",
+      "term": "else",
+      "aliases": ["elif", "else if"],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Control Flow",
+      "ambiguous": false,
+      "definition": "A keyword that executes an alternative block when the preceding if condition is false.",
+      "uri": "https://en.wikipedia.org/wiki/Conditional_(computer_programming)"
+    },
+    {
+      "id": "kw_while",
+      "term": "while",
+      "aliases": [],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Loops",
+      "ambiguous": false,
+      "definition": "A loop keyword that repeatedly executes a block as long as a condition is true.",
+      "uri": "https://en.wikipedia.org/wiki/While_loop"
+    },
+    {
+      "id": "kw_for",
+      "term": "for",
+      "aliases": ["for loop", "for-each"],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Loops",
+      "ambiguous": false,
+      "definition": "A loop keyword that iterates over a sequence or a range.",
+      "uri": "https://en.wikipedia.org/wiki/For_loop"
+    },
+    {
+      "id": "kw_return",
+      "term": "return",
+      "aliases": [],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Control Flow",
+      "ambiguous": false,
+      "definition": "A keyword that exits the current function and optionally passes a value back to the caller.",
+      "uri": "https://en.wikipedia.org/wiki/Return_statement"
+    },
+    {
+      "id": "kw_def",
+      "term": "def",
+      "aliases": ["function definition"],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Definitions",
+      "ambiguous": false,
+      "definition": "A Python keyword used to define a function.",
+      "uri": "https://en.wikipedia.org/wiki/Python_(programming_language)"
+    },
+    {
+      "id": "kw_class",
+      "term": "class",
+      "aliases": [],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > OOP",
+      "ambiguous": false,
+      "definition": "A keyword used to define a class (blueprint for objects) in OOP languages.",
+      "uri": "https://en.wikipedia.org/wiki/Class_(computer_programming)"
+    },
+    {
+      "id": "kw_import",
+      "term": "import",
+      "aliases": ["include", "require"],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Modules",
+      "ambiguous": false,
+      "definition": "A keyword to load external modules or libraries into the current program.",
+      "uri": "https://en.wikipedia.org/wiki/Include_directive"
+    },
+    {
+      "id": "kw_try",
+      "term": "try",
+      "aliases": [],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Exception Handling",
+      "ambiguous": false,
+      "definition": "A keyword that wraps a block of code to catch exceptions.",
+      "uri": "https://en.wikipedia.org/wiki/Exception_handling"
+    },
+    {
+      "id": "kw_catch",
+      "term": "catch",
+      "aliases": ["except"],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Exception Handling",
+      "ambiguous": false,
+      "definition": "A keyword that handles exceptions raised in the corresponding try block.",
+      "uri": "https://en.wikipedia.org/wiki/Exception_handling"
+    },
+    {
+      "id": "kw_finally",
+      "term": "finally",
+      "aliases": [],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Exception Handling",
+      "ambiguous": false,
+      "definition": "A keyword that defines a block that always executes regardless of exceptions.",
+      "uri": "https://en.wikipedia.org/wiki/Exception_handling"
+    },
+    {
+      "id": "kw_throw",
+      "term": "throw",
+      "aliases": ["throws", "raise"],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Exception Handling",
+      "ambiguous": false,
+      "definition": "A keyword used to manually raise an exception.",
+      "uri": "https://en.wikipedia.org/wiki/Exception_handling"
+    },
+    {
+      "id": "kw_new",
+      "term": "new",
+      "aliases": [],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Memory",
+      "ambiguous": false,
+      "definition": "A keyword that allocates memory and creates a new object.",
+      "uri": "https://en.wikipedia.org/wiki/New_(C%2B%2B)"
+    },
+    {
+      "id": "kw_delete",
+      "term": "delete",
+      "aliases": [],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Memory",
+      "ambiguous": false,
+      "definition": "A keyword that deallocates previously allocated memory.",
+      "uri": "https://en.wikipedia.org/wiki/New_(C%2B%2B)"
+    },
+    {
+      "id": "kw_const",
+      "term": "const",
+      "aliases": ["final", "val"],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Modifiers",
+      "ambiguous": false,
+      "definition": "A keyword that declares a variable as immutable (constant).",
+      "uri": "https://en.wikipedia.org/wiki/Constant_(computer_programming)"
+    },
+    {
+      "id": "kw_async",
+      "term": "async",
+      "aliases": ["async/await"],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Concurrency",
+      "ambiguous": false,
+      "definition": "A keyword used to declare an asynchronous function.",
+      "uri": "https://en.wikipedia.org/wiki/Async/await"
+    },
+    {
+      "id": "kw_await",
+      "term": "await",
+      "aliases": [],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Concurrency",
+      "ambiguous": false,
+      "definition": "A keyword that pauses execution of an async function until a promise resolves.",
+      "uri": "https://en.wikipedia.org/wiki/Async/await"
+    },
+    {
+      "id": "kw_lambda",
+      "term": "lambda",
+      "aliases": ["anonymous function", "arrow function"],
+      "label": "PROG_KEYWORD",
+      "category": "Programming Keywords > Functions",
+      "ambiguous": false,
+      "definition": "A keyword for defining anonymous (unnamed) functions inline.",
+      "uri": "https://en.wikipedia.org/wiki/Anonymous_function"
+    }
+  ]
+}

@@ -8,7 +8,6 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 
 # Local modules
-from src.stt    import speech_to_text
 from src.driver import run_full_pipeline
 from src.tts    import AVAILABLE_VOICES, VOICE_MAP
 
@@ -20,7 +19,7 @@ st.title("📚 CodeTranslate‑Indic Demo")
 st.markdown(
     """
     **Localized translation of Computer‑Science lectures** –
-    upload an **English audio file** *or* an **English transcript**, select a target Indic language, and get:
+    upload an **English transcript**, select a target Indic language, and get:
     1. the original English transcript,
     2. a translated transcript **with English technical terms preserved**,
     3. a translated transcript **with all terms written in the target script**,
@@ -29,16 +28,12 @@ st.markdown(
 )
 
 # ---------------------------------------------------------------------------
-# Input: audio OR text file
+# Input: text file (English transcript)
 # ---------------------------------------------------------------------------
-col1, col2 = st.columns(2)
-with col1:
-    audio_file = st.file_uploader("Upload English audio (wav/mp3)", type=["wav", "mp3"])
-with col2:
-    txt_file = st.file_uploader("Upload English transcript (txt)", type=["txt"])
+txt_file = st.file_uploader("Upload English transcript (txt)", type=["txt"])
 
-if not (audio_file or txt_file):
-    st.info("Please upload an audio file **or** a transcript to continue.")
+if not txt_file:
+    st.info("Please upload an English transcript (.txt) to continue.")
     st.stop()
 
 # ---------------------------------------------------------------------------
@@ -83,16 +78,8 @@ if st.button("Translate & Generate Audio"):
             progress_bar.progress(int(current / total * 100))
             progress_placeholder.text(f"Generating audio chunk {current}/{total}…")
 
-        # 1️⃣ Get English text
-        if txt_file:
-            english_text = txt_file.read().decode("utf-8")
-        else:
-            audio_bytes_input = audio_file.read()
-            mime_type = "audio/mpeg" if audio_file.name.lower().endswith(".mp3") else "audio/wav"
-            english_text = speech_to_text(audio_bytes_input, mime_type=mime_type)
-            if not english_text:
-                st.error("Speech‑to‑text failed – please try a different audio file.")
-                st.stop()
+        # 1️⃣ Get English text from uploaded transcript
+        english_text = txt_file.read().decode("utf-8")
 
         # 2️⃣ Run pipeline → produces both transcript versions + audio in one go
         normal_text, transliterated_text, audio_path = run_full_pipeline(
