@@ -1,5 +1,0 @@
-Dynamic Programming | AMBIGUOUS
-Backpropagation | AMBIGUOUS
-Polymorphism | AMBIGUOUS
-Recursion | AMBIGUOUS
-
